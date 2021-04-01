@@ -7,7 +7,7 @@
     "dev": "parcel src/index.html",
     "build": "parcel build src/index.html"
   },
-  "keywords": [
+  "authors": [
     "Mathis LE BONNIEC",
     "Matthias HARTMANN",
     "Elouan MURAT",
@@ -15,8 +15,12 @@
     "Brieuc JOONNEKINDT",
     "Lucas BLOT"
   ],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "booking",
+    "webapp",
+    "parcel-bundler"
+  ],
+  "license": "Apache-2.0",
   "dependencies": {
     "parcel-bundler": "^1.12.5"
   }
