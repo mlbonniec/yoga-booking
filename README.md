@@ -22,7 +22,7 @@ $ npm install
 ```
 
 ### Run the projet
-To run the project, you will have to possibilities. You will be able to make some modifications in development mode, or you will be able to build the project.
+To run the project, you will have two possibilities. You will be able to make some modifications in development mode, or you will be able to build the project.
 
 #### In development mode
 ```
