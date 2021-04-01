@@ -4,9 +4,14 @@ To contribute to this project, follow these instructions.
 ## Table of contets
 - [How to contribute](#how-to-contribute)
 	- [Table of contets](#table-of-contets)
+	- [Install `git`](#install-git)
 	- [Install `Node.js`](#install-nodejs)
 	- [Do some changes](#do-some-changes)
 	- [Commit and Push](#commit-and-push)
+
+## Install `git`
+To install the `git` utility that will permit us to manage our Github content, we'll have to install the Github Desktop application. Simply [download it](https://desktop.github.com/) from the official Github website.  
+Once, install it, open it, and connect you to your Github account.
 
 ## Install `Node.js`
 `Node.js` allows you to use JavaScript out of a web browser. In our case, we use `Node.js` to have access to many dependencies to simplify our project.  
