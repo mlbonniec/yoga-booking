@@ -1,9 +1,9 @@
 # How to contribute
 To contribute to this project, follow these instructions.
 
-## Table of contets
+## Table of contents
 - [How to contribute](#how-to-contribute)
-	- [Table of contets](#table-of-contets)
+	- [Table of contents](#table-of-contents)
 	- [Install `git`](#install-git)
 	- [Install `Node.js`](#install-nodejs)
 	- [Do some changes](#do-some-changes)
