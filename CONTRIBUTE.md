@@ -10,8 +10,8 @@ To contribute to this project, follow these instructions.
 	- [Commit and Push](#commit-and-push)
 
 ## Install `git`
-To install the `git` utility that will permit us to manage our Github content, we'll have to install the Github Desktop application. Simply [download it](https://desktop.github.com/) from the official Github website.  
-Once, install it, open it, and connect you to your Github account.
+To install the `git` utility that will permit us to manage our Github content. Simply [download it](https://git-scm.com/download) from the official `git` website.  
+Once, execute the installer to install it.
 
 ## Install `Node.js`
 `Node.js` allows you to use JavaScript out of a web browser. In our case, we use `Node.js` to have access to many dependencies to simplify our project.  
