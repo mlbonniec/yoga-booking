@@ -1,5 +1,5 @@
 # Yoga Booking
-This application will allow you to register for yoga lessons. You will be able to add registrations, print reservation forms etc.
+This application will allow you to register for workshop during activity test dat. You will be able to add registrations, print reservation forms etc.
 
 ## Table of contents
 - [Yoga Booking](#yoga-booking)
