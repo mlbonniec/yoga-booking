@@ -4,19 +4,19 @@ This application will allow you to register for yoga lessons. You will be able t
 ## Table of contents
 - [Yoga Booking](#yoga-booking)
 	- [Table of contents](#table-of-contents)
-	- [Installation](#installation)
 	- [Contribute](#contribute)
+	- [Installation](#installation)
 		- [Download the project](#download-the-project)
 		- [Run the projet](#run-the-projet)
 			- [In development mode](#in-development-mode)
 			- [Build the projet](#build-the-projet)
 	- [License](#license)
 
-## Installation
-*`$` symbol only represents a bash terminal, don't write it when you execute the commands.*
-
 ## Contribute
 To contribute to this project, simply read the [contributing documentation](./CONTRIBUTE.md).
+
+## Installation
+*`$` symbol only represents a bash terminal, don't write it when you execute the commands.*
 
 ### Download the project
 ```bash
