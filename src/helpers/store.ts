@@ -81,8 +81,8 @@ export default class Store {
 		return this.store.length();
 	}
 
-	public key(keyIndex: number): Promise<string> {
-		return this.store.key(keyIndex);
+	public key(key: number): Promise<string> {
+		return this.store.key(key);
 	}
 
 	public keys(): Promise<string[]> {
