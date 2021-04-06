@@ -1,6 +1,9 @@
 # Yoga Booking
 This application will allow you to register for workshop during activity test dat. You will be able to add registrations, print reservation forms etc.
 
+All data management is done only on client-side, so it works offline. Data are stored in IndexedDB, WebSQL or localStorage, it depends on the browser compatibility.  
+Data management is done with the [localForage](https://github.com/localForage/localForage) library.
+
 ## Table of contents
 - [Yoga Booking](#yoga-booking)
 	- [Table of contents](#table-of-contents)
