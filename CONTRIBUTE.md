@@ -17,7 +17,7 @@ Once, execute the installer to install it.
 `Node.js` allows you to use JavaScript out of a web browser. In our case, we use `Node.js` to have access to many dependencies to simplify our project.  
 We will then build our project (*with [`Parcel.js`](https://parceljs.org/) dependency*), to convert it into a simple website in HTML, CSS and JS files.
 
-To use `Node.js`, [download it](https://nodejs.org/en/download/) from the official website.
+To use `Node.js`, [download it](https://nodejs.org/en/download/) from the official website. You'll have to download the **installer** (*not binary*) for the **`LTS`** version, not the `Current`.
 
 Once the installer is downloaded, run it to install `Node.js`.
 
