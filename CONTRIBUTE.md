@@ -10,7 +10,7 @@ To contribute to this project, follow these instructions.
 	- [Commit and Push](#commit-and-push)
 
 ## Install `git`
-To install the `git` utility that will permit us to manage our Github content. Simply [download it](https://git-scm.com/download) from the official `git` website.  
+To install the `git` utility that will permit us to manage our Github content. Simply [download it](https://git-scm.com/download) from the official `git` website. You'll have to download the **`Git for Windows Setup`** software.
 Once, execute the installer to install it.
 
 ## Install `Node.js`
