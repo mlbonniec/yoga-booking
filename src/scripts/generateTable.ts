@@ -36,8 +36,9 @@ function generateTable(table: HTMLTableElement | null, data:Array<object>){
 	
 	// Foreach doesn't wait for promise, so we've to use a for loop
 	const data = await participants.getItems<Participant>();
-	let table = document.getElementById("table") as HTMLTableElement
+
+	data.sort()
+	let table = document.getElementById("participant") as HTMLTableElement
 	generateTableHead(table, data[0])
 	generateTable(table, data)
-	//console.log(result);
 })();
