@@ -1,4 +1,4 @@
-import type { Participant } from '../@types/participant';
+import type { Participant, Room, Speaker } from '../@types/participant';
 import Store from '../helpers/store';
 
 function generateTableHead(table: HTMLTableElement | null, data:object){
@@ -16,7 +16,7 @@ function generateTableHead(table: HTMLTableElement | null, data:object){
 	  }
 }
 
-function generateTable(table: HTMLTableElement | null, data:Array<object>){
+function generateTable<T extends { [key: string]: any }>(table: HTMLTableElement | null, data: T[]){
 	if(table == null || data == null){
 		console.log(String(table) +" | "+ String(data))
 		return;
@@ -33,12 +33,20 @@ function generateTable(table: HTMLTableElement | null, data:Array<object>){
 
 (async () => {
 	const participants = new Store('participants');
-	
+ 	const rooms = new Store('rooms');
+ 	const speakers = new Store('speakers');
 	// Foreach doesn't wait for promise, so we've to use a for loop
 	const data = await participants.getItems<Participant>();
-
-	data.sort()
-	let table = document.getElementById("participant") as HTMLTableElement
+	let table = document.getElementById("participants") as HTMLTableElement
 	generateTableHead(table, data[0])
 	generateTable(table, data)
+
+	const data1 = await rooms.getItems<Room>();
+	table = document.getElementById("rooms") as HTMLTableElement
+	generateTableHead(table, data1[0])
+	generateTable(table, data1)
+	const data2 = await speakers.getItems<Speaker>();
+	table = document.getElementById("speakers") as HTMLTableElement
+	generateTableHead(table, data2[0])
+	generateTable(table, data2)
 })();
