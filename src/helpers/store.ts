@@ -30,17 +30,22 @@ export default class Store {
 	public async getItems<T extends object>(filter?: Partial<T>): Promise<Value<T>[]> {		
 		const items: Value<T>[] = [];
 		await this.store.iterate((value: T, key: string, i: number) => {
-			items.push({
-				id: parseInt(key, 10),
-				...value,
-			});	
+			// Remove string keys
+			if (!isNaN(parseInt(key, 10)))
+				items.push({
+					id: parseInt(key, 10),
+					...value,
+				});	
 		});
-		
+
 		if (filter)
 			return items.filter(e => this.applyFilter(e, filter));
 		
 		items.sort((a, b) => a.id - b.id);
 
+		// Sort by key
+		items.sort((a, b) => a.id - b.id);
+			
 		return items;
 	}
 
