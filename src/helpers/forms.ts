@@ -1,4 +1,5 @@
-import {toHour} from './time';
+import { toHour } from './time';
+
 export function fillForm<T extends { [key: string]: any }>(el: HTMLFormElement, data: T) {
 	if (!el)
 		throw new Error('You have to pass a form element in the fillForm function.');
@@ -12,8 +13,6 @@ export function fillForm<T extends { [key: string]: any }>(el: HTMLFormElement, 
 		
 		const value = data[name];
 		switch(e.type){
-			default:
-				e.value = "None"
 			case 'text':
 				e.value = value;
 				break; 
@@ -22,8 +21,7 @@ export function fillForm<T extends { [key: string]: any }>(el: HTMLFormElement, 
 				break; 
 			case 'time':
 				e.value = toHour(value);
-				break; 
-			
+				break;
 		}
 	});
 }

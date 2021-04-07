@@ -2,6 +2,7 @@ import type { Participant, Room, Speaker, Workshop } from '../@types/structures'
 import {toSeconds} from '../helpers/time';
 import { fillForm } from '../helpers/forms';
 import Store from '../helpers/store';
+
 const data: Room[] = [
 	{
 		name: 'Jane',
@@ -80,5 +81,5 @@ const data3: Workshop[] = [
 			await workshops.setItem<Workshop>(d);
 		}
 	}
-	
+
 })();
