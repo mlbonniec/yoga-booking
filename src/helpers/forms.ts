@@ -1,5 +1,4 @@
-import { utc } from 'moment';
-
+import {toHour} from './time';
 export function fillForm<T extends { [key: string]: any }>(el: HTMLFormElement, data: T) {
 	if (!el)
 		throw new Error('You have to pass a form element in the fillForm function.');
@@ -22,7 +21,7 @@ export function fillForm<T extends { [key: string]: any }>(el: HTMLFormElement, 
 				e.checked = value;
 				break; 
 			case 'time':
-				e.value = utc(value * 1000).format('HH:mm');
+				e.value = toHour(value);
 				break; 
 			
 		}

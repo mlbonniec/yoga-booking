@@ -1,11 +1,11 @@
 import { duration, utc } from "moment";
 
-export function toSeconds(hour:string): number | null{
-    if(!hour) return null
+export function toSeconds(hour:string): number {
+    if(!hour) return 0
     return duration(hour).asSeconds();
 }
 
-export function toHour(seconds:number): string | null{
-    if(!seconds) return null
+export function toHour(seconds:number): string{
+    if(!seconds) return "00:00"
     return utc(seconds * 1000).format('HH:mm');
 }

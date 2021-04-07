@@ -1,4 +1,5 @@
 import type { Participant, Room, Speaker, Workshop } from '../@types/structures';
+import {toSeconds} from '../helpers/time';
 import { fillForm } from '../helpers/forms';
 import Store from '../helpers/store';
 const data: Room[] = [
@@ -44,7 +45,7 @@ const data3: Workshop[] = [
 	if (form)
 		fillForm<Partial<Participant> & { id: number; payed: boolean; time: number }>(form as HTMLFormElement, {
 			id: 2,
-			time: 34200,
+			time: toSeconds("09:30"),
 			payed: true,
 			name: 'Jane',
 			surname: 'DOE',
