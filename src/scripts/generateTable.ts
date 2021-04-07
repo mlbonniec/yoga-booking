@@ -15,6 +15,7 @@ function generateTableHead(table: HTMLTableElement | null, data:object){
 	let row = thead.insertRow();
 	//create a name for each parameters that the table will take
 	for (let key in data) {
+		if(key === "id") continue;
 		let th = document.createElement("th");
 		let text = document.createTextNode(key);
 		th.appendChild(text);
@@ -38,6 +39,7 @@ function generateTable<T extends { [key: string]: any }>(table: HTMLTableElement
 	for (let element of data) {
 		let row = table.insertRow();
 		for (let key in element) {
+		  if(key === "id") continue;
 		  let cell = row.insertCell();
 		  let text = document.createTextNode(element[key]);
 		  cell.appendChild(text);
