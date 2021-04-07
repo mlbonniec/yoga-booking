@@ -1,9 +1,6 @@
-import { duration, utc } from 'moment';
+import { utc } from 'moment';
 
 export function fillForm<T extends { [key: string]: any }>(el: HTMLFormElement, data: T) {
-	const m = duration('09:30').asSeconds()
-	console.log(m);
-
 	if (!el)
 		throw new Error('You have to pass a form element in the fillForm function.');
 
