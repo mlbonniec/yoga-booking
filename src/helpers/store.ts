@@ -40,8 +40,6 @@ export default class Store {
 
 		if (filter)
 			return items.filter(e => this.applyFilter(e, filter));
-		
-		items.sort((a, b) => a.id - b.id);
 
 		// Sort by key
 		items.sort((a, b) => a.id - b.id);
