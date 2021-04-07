@@ -4,3 +4,11 @@ p {
 h1 {
     color: rgb(0, 255, 0);
 }
+
+th{
+    padding: 10px 10px;
+    border: 10px lightcoral groove;
+    text-align: center;
+    border-top: 0px;
+    border-bottom: 0px;
+}
