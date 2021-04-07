@@ -37,8 +37,8 @@ const data3: Workshop[] = [
 	const participants = new Store('participants');
 	const rooms = new Store('rooms');
 
-	const result = await participants.getItems<Participant>({ surname: 'doe' });
-	console.log(result);
+	// const result = await participants.getItems<Participant>({ surname: 'doe' });
+	// console.log(result);
 
 	const form = document.getElementById('form');
 	if (form)
@@ -52,13 +52,14 @@ const data3: Workshop[] = [
 			email: 'jane@doe.com'
 		});
 
-	for await (const d of data) {
-		await rooms.setItem<Room>(d);
-	}
+	// for await (const d of data) {
+	// 	await rooms.setItem<Room>(d);
+	// }
 	const speakers = new Store('speakers');
 	const workshops = new Store('workshops');
 
 	if(await rooms.length() == 0){
+		console.log("hey")
 		for await (const d of data) {
 			await rooms.setItem<Room>(d);
 		}

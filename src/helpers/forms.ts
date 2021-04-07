@@ -10,13 +10,21 @@ export function fillForm<T extends { [key: string]: any }>(el: HTMLFormElement, 
 		const name = e.getAttribute('name');
 		if (!name || !(name in data))
 			return;
-
+		
 		const value = data[name];
-		if (e.type === 'text')
-			e.value = value;
-		else if (e.type === 'checkbox')
-			e.checked = value;
-		else if (e.type === 'time')
-			e.value = utc(value * 1000).format('HH:mm');
+		switch(e.type){
+			default:
+				e.value = "None"
+			case 'text':
+				e.value = value;
+				break; 
+			case 'checkbox':
+				e.checked = value;
+				break; 
+			case 'time':
+				e.value = utc(value * 1000).format('HH:mm');
+				break; 
+			
+		}
 	});
 }
