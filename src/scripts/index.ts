@@ -16,15 +16,15 @@ const data: Participant[] = [
 	}
 ];
 
-(async () => {
-	const participants = new Store('participants');
+// (async () => {
+// 	const participants = new Store('participants');
 	
-	// Foreach doesn't wait for promise, so we've to use a for loop
-	for await (const d of data) {
-		await participants.setItem<Participant>(d);
-	}
+// 	// Foreach doesn't wait for promise, so we've to use a for loop
+// 	for await (const d of data) {
+// 		await participants.setItem<Participant>(d);
+// 	}
 
-	const result = await participants.getItems<Participant>({ surname: 'doe' });
+// 	const result = await participants.getItems<Participant>({ surname: 'doe' });
 
-	console.log(result);
-})();
+// 	//console.log(result);
+// })();

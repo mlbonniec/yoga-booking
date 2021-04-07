@@ -61,7 +61,7 @@ export default class Store {
 			throw new Error('\'id\' is a reserved keyword inside data.');
 		
 		const id = await this.autoIncrement();
-		console.log(id, value);
+		//console.log(id, value);
 
 		return await this.store.setItem<T>(id.toString(), value);
 	}
