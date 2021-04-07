@@ -20,8 +20,10 @@ const data: Participant[] = [
 	const participants = new Store('participants');
 	
 	// Foreach doesn't wait for promise, so we've to use a for loop
-	for await (const d of data) {
-		await participants.setItem<Participant>(d);
+	if (await participants.length() < 50) {
+		for await (const d of data) {
+			await participants.setItem<Participant>(d);
+		}
 	}
 
 	const result = await participants.getItems<Participant>({ surname: 'doe' });
