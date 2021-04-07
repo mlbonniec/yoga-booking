@@ -1,4 +1,4 @@
-import type { Participant, Room, Speaker, Workshops } from '../@types/participant';
+import type { Participant, Room, Speaker, Workshop } from '../@types/structures';
 import Store from '../helpers/store';
 
 function generateTableHead(table: HTMLTableElement | null, data:object){
@@ -66,7 +66,7 @@ function generateTable<T extends { [key: string]: any }>(table: HTMLTableElement
 	table = document.getElementById("speakers") as HTMLTableElement
 	generateTable(table, data2)
 
-	const data3 = await workshops.getItems<Workshops>();
+	const data3 = await workshops.getItems<Workshop>();
 	table = document.getElementById("workshops") as HTMLTableElement
 	generateTable(table, data3)
 })();

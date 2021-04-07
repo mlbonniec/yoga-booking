@@ -1,4 +1,4 @@
-import type { Participant, Room, Speaker, Workshops } from '../@types/participant';
+import type { Participant, Room, Speaker, Workshop } from '../@types/structures';
 import Store from '../helpers/store';
 const data: Room[] = [
 	{
@@ -23,7 +23,7 @@ const data2: Speaker[] = [
 		email: 'jane@doe.com'
 	}
 ];
-const data3: Workshops[] = [
+const data3: Workshop[] = [
 	{
 		name: 'Foo',
 		start: 0,
@@ -55,7 +55,7 @@ const data3: Workshops[] = [
 	}
 	if(await workshops.length() == 0){
 		for await (const d of data3) {
-			await workshops.setItem<Workshops>(d);
+			await workshops.setItem<Workshop>(d);
 		}
 	}
 	
