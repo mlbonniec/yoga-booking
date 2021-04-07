@@ -1,9 +1,6 @@
 import type { Participant } from '../@types/participant';
 import Store from '../helpers/store';
 
-
-const participants = new Store('participants');
-var data = participants.getItems();
 function generateTableHead(table: HTMLTableElement | null, data:object){
 	if(table == null || data == null){
 		console.log(String(table) +" | "+ String(data))
@@ -34,6 +31,13 @@ function generateTable(table: HTMLTableElement | null, data:Array<object>){
 	  }
 }
 
-let table = document.getElementById("table") as HTMLTableElement
-generateTableHead(table, data[0])
-generateTable(table, data)
+(async () => {
+	const participants = new Store('participants');
+	
+	// Foreach doesn't wait for promise, so we've to use a for loop
+	const data = await participants.getItems<Participant>();
+	let table = document.getElementById("table") as HTMLTableElement
+	generateTableHead(table, data[0])
+	generateTable(table, data)
+	//console.log(result);
+})();
