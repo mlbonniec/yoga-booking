@@ -1,4 +1,4 @@
-import {toHour} from './time';
+import { toHour, toSeconds } from './time';
 import Store from '../helpers/store';
 
 export function fillForm<T extends { [key: string]: any }>(el: HTMLFormElement, data: T) {
@@ -13,7 +13,7 @@ export function fillForm<T extends { [key: string]: any }>(el: HTMLFormElement, 
 			return;
 		
 		const value = data[name];
-		switch(e.type){
+		switch(e.type) {
 			case 'text':
 				e.value = value;
 				break; 
@@ -27,45 +27,46 @@ export function fillForm<T extends { [key: string]: any }>(el: HTMLFormElement, 
 	});
 }
 
-
-export function getForms(form:HTMLFormElement): object{
+export function getForm(form: HTMLFormElement): object {
 	const inputs = Array.from(form.getElementsByTagName('input'));
-	let ob = {
+	const data: { [key: string]: any } = {};
 
-	}
-	inputs.forEach(element => {
-		if(element.getAttribute('name')){
-			ob[element.getAttribute('name')] = element.value
+	inputs.forEach(e => {
+		const attr = e.getAttribute('name');
+		if(!attr)
+			return;
+
+		switch(e.type) {
+			case 'text':
+				data[attr] = e.value;
+				break; 
+			case 'checkbox':
+				data[attr] = e.checked;
+				break; 
+			case 'time':
+				data[attr] = toSeconds(e.value);
+				break;
 		}
-		
 	});
-	return ob;
+
+	return data;
 }
 
+export async function addToDB(structure: string, data: object & { id?: number }) {
+	const id = data.id;
+	const store = new Store(structure);
 
-export function addToDb(ob:object, struct: string){
-	const id = ob["id"];
-	delete(ob["id"]);
-	console.log(ob)
-	if(id !== undefined && id !== ""){
-		
-		(async() =>{
-			const participants = new Store(struct)
-			await participants.updateItem(id,ob);
-		})();
-	}
-	else{
-		(async() =>{
-			const participants = new Store(struct)
-			await participants.setItem(ob);
-			console.log("test");
-		})();
+	if(id) {
+		delete(data.id);
+		await store.updateItem(id, data);
+	} else {
+		await store.setItem(data);
 	}
 }
 
 // const tonElement = document.getElementById('bouton') as HTMLButtonElement;
 // tonElement.addEventListener('click', () => {
 // 	const form = document.getElementById("form") as HTMLFormElement;
-// 	addToDb(getForms(form), "participants")
+// 	addToDb("participants", getForm(form))
 // 	document.location.reload()
 //   });
