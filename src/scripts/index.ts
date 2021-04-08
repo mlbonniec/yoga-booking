@@ -45,7 +45,7 @@ const data3: Workshop[] = [
 	const form = document.getElementById('form');
 	if (form)
 		fillForm<Partial<Participant> & { id: number; payed: boolean; time: number }>(form as HTMLFormElement, {
-			id: 2,
+			id: 1,
 			time: toSeconds("09:30"),
 			payed: true,
 			name: 'Jane',

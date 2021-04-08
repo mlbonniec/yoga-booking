@@ -45,21 +45,74 @@ export function getForms(form:HTMLFormElement): object{
 
 
 export function addToDb(ob:object){
+	
 	if(ob["payed"] != undefined){
-		ob = ob as Participant;
-		if(ob["id"] !== undefined){
+		if(ob["id"] !== undefined && ob["id"] !== ""){
+			console.log(ob);
 			let id = ob["id"]
 			delete(ob["id"]);
-			
 			(async() =>{
 				const participants = new Store("participants")
-				// await participants.setItem<Participant>(obj)
+				await participants.updateItem<Participant>(id,ob as Participant);
 			})();
 		}else{
 			(async() =>{
+				delete(ob["id"]);
 				const participants = new Store("participants")
-				// await participants.setItem<Participant>(obj)
+				await participants.setItem<Participant>(ob as Participant)
 			})();
 		}
 	}
+	else if(ob["speaker"] != undefined){
+		if(ob["id"] !== undefined && ob["id"] !== ""){
+			let id = ob["id"]
+			delete(ob["id"]);
+			(async() =>{
+				const participants = new Store("workshops")
+				await participants.updateItem<Workshop>(id,ob as Workshop);
+			})();
+		}else{
+			(async() =>{
+				delete(ob["id"]);
+				const participants = new Store("workshops")
+				await participants.setItem<Workshop>(ob as Workshop)
+			})();
+		}
+	}
+	else if(ob["email"] != undefined){
+		if(ob["id"] !== undefined && ob["id"] !== ""){
+			let id = ob["id"]
+			delete(ob["id"]);
+			(async() =>{
+				const participants = new Store("speakers")
+				await participants.updateItem<Speaker>(id,ob as Speaker);
+			})();
+		}else{
+			(async() =>{
+				delete(ob["id"]);
+				const participants = new Store("speakers")
+				await participants.setItem<Speaker>(ob as Speaker)
+			})();
+		}
+	}
+	else if(ob["name"] != undefined){
+		if(ob["id"] !== undefined && ob["id"] !== ""){
+			let id = ob["id"]
+			delete(ob["id"]);
+			(async() =>{
+				const participants = new Store("rooms")
+				await participants.updateItem<Room>(id,ob as Room);
+			})();
+		}else{
+			(async() =>{
+				delete(ob["id"]);
+				const participants = new Store("rooms")
+				await participants.setItem<Room>(ob as Room)
+			})();
+		}
+	}
+	else{
+		console.error("l'objet n'a pas pu être ajouter")
+	}
 }
+
