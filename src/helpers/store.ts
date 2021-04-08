@@ -70,6 +70,21 @@ export default class Store {
 		return await this.store.setItem<T>(id.toString(), value);
 	}
 
+	public async updateItem<T extends object>(id: number, value: T): Promise<T> {
+		if (value.hasOwnProperty('id'))
+			throw new Error('\'id\' is a reserved keyword inside data.');
+
+		const item = await this.getItem(id);
+		if (!item)
+			throw new Error(`Item with id ${id} doesn't exists.`);
+
+		const isValid = Object.keys(value).every(e => Object.keys(item).includes(e));
+		if (!isValid)
+			throw new Error('The values to be updated don\'t match the existing values.');
+
+		return await this.store.setItem<T>(id.toString(), value);
+	}
+
 	public removeItem(key: number | string): Promise<void> {
 		if (typeof key === 'number')
 			key = key.toString();

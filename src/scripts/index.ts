@@ -81,7 +81,6 @@ const data3: Workshop[] = [
 			await workshops.setItem<Workshop>(d);
 		}
 	}
-
 })();
 const form = document.getElementById('form') as HTMLFormElement;
 
