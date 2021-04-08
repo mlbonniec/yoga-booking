@@ -1,6 +1,6 @@
 import type { Participant, Room, Speaker, Workshop } from '../@types/structures';
 import {toSeconds} from '../helpers/time';
-import { fillForm } from '../helpers/forms';
+import { fillForm, getForms, addToDb } from '../helpers/forms';
 import Store from '../helpers/store';
 const data: Room[] = [
 	{
@@ -29,7 +29,7 @@ const data3: Workshop[] = [
 	{
 		name: 'Foo',
 		start: 0,
-		end: 1,
+		end: 0,
 		room: 0,
 		speaker: 0
 	}
@@ -48,7 +48,7 @@ const data3: Workshop[] = [
 			time: toSeconds("09:30"),
 			payed: true,
 			name: 'Jane',
-			surname: 'DOE',
+			surname: 'Donald',
 			phone: '+123456789',
 			email: 'jane@doe.com'
 		});
@@ -82,3 +82,6 @@ const data3: Workshop[] = [
 	}
 	
 })();
+const form = document.getElementById('form') as HTMLFormElement;
+
+addToDb(getForms(form))

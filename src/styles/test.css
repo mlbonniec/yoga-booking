@@ -12,3 +12,7 @@ th{
     border-top: 0px;
     border-bottom: 0px;
 }
+tr{
+    padding: 10px 10px;
+    text-align: center;
+}
