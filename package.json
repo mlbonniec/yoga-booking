@@ -8,6 +8,9 @@
     "build": "parcel build src/index.html --no-source-maps --no-cache --public-url ./",
     "check-types": "tsc --noEmit"
   },
+  "alias": {
+    "sweetalert2": "./node_modules/sweetalert2/dist/sweetalert2.js"
+  },
   "authors": [
     "Mathis LE BONNIEC",
     "Matthias HARTMANN",
