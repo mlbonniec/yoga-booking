@@ -81,5 +81,4 @@ const data3: Workshop[] = [
 			await workshops.setItem<Workshop>(d);
 		}
 	}
-
 })();
