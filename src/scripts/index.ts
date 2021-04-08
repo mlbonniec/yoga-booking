@@ -82,6 +82,3 @@ const data3: Workshop[] = [
 		}
 	}
 })();
-const form = document.getElementById('form') as HTMLFormElement;
-
-addToDb(getForms(form))
