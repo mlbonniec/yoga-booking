@@ -52,15 +52,15 @@ export function getForm(form: HTMLFormElement): object {
 	return data;
 }
 
-export async function addToDB(structure: string, data: object & { id?: number }) {
+export async function addToDB<T extends { id?: number }>(structure: string, data: T): Promise<T> {
 	const id = data.id;
 	const store = new Store(structure);
 
 	if(id) {
 		delete(data.id);
-		await store.updateItem(id, data);
+		return await store.updateItem<T>(id, data);
 	} else {
-		await store.setItem(data);
+		return await store.setItem<T>(data);
 	}
 }
 
