@@ -64,9 +64,9 @@ export function addToDb(ob:object, struct: string){
 	}
 }
 
-const tonElement = document.getElementById('bouton') as HTMLButtonElement;
-tonElement.addEventListener('click', () => {
-	const form = document.getElementById("form") as HTMLFormElement;
-	addToDb(getForms(form), "participants")
-	document.location.reload()
-  });
+// const tonElement = document.getElementById('bouton') as HTMLButtonElement;
+// tonElement.addEventListener('click', () => {
+// 	const form = document.getElementById("form") as HTMLFormElement;
+// 	addToDb(getForms(form), "participants")
+// 	document.location.reload()
+//   });
