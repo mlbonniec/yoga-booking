@@ -1,5 +1,4 @@
 import {toHour} from './time';
-import type { Participant, Room, Speaker, Workshop } from '../@types/structures';
 import Store from '../helpers/store';
 
 export function fillForm<T extends { [key: string]: any }>(el: HTMLFormElement, data: T) {
