@@ -1,6 +1,6 @@
-const form = document.getElementById('test')
+const form = document.getElementById('form');
 
-form?.addEventListener("submit", function(event){
-    event.preventDefault()
-    //+Ajouter les fonctionalité de sauvegarde
-})
+form?.addEventListener('submit', function(event){
+    event.preventDefault();
+    // + Ajouter les fonctionnalités de sauvegarde
+});
