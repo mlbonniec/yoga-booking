@@ -22,3 +22,49 @@ tr{
     padding: 10px 10px;
     text-align: center;
 }
+body {
+    text-align: center;
+    margin-left: 150px;
+    margin-right: 150px;
+    font-family: cursive;
+    color: #000000;
+    background-color: #EEEFF5;
+    background-repeat: no-repeat, repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+}
+#Yoga-Booking{
+    margin-top: 15px;
+}
+header, footer{
+    text-shadow: 2px 2px 4px #000000;
+}
+footer {
+    border-radius: 20px;
+    border: 2px solid black;
+}
+table {
+    width: 100%;
+    text-align: center;
+    background-color: #F5F7FA;
+    }
+th {
+    font-family: monospace;
+    padding: 5px;
+}
+tr {
+    font-family: sans-serif;
+    border: thin solid #EAECEF;
+    padding: 5px;
+    text-align: center;
+}
+td {
+    padding: 5px;
+}
+
+caption {
+    font-family: sans-serif;
+}
+#title {
+    text-align: left;
+}
