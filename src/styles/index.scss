@@ -1,45 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
-body {
-    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
-    text-align: center;
-    margin-left: 150px;
-    margin-right: 150px;
-    color: #000000;
-    background-color: #EEEFF5;
-    background-repeat: no-repeat, repeat;
-    background-size: 100%;
-    background-attachment: fixed;
-}
-
-#Yoga-Booking{
-    margin-top: 15px;
-}
-header, footer{
-    text-shadow: 2px 2px 4px #000000;
-}
 table {
     width: 100%;
     text-align: left;
-    background-color: #F5F7FA;
     margin-bottom: 3rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.025);
 }
 
 th {
+    background-color: #F5F7FA;
     color: #848484;
     padding: .75rem 1rem;
     font-weight: 300;
     text-transform: capitalize;
+    font-size: .85rem;
+    
+    &:first-child {border-top-left-radius: 10px;}
+    &:last-child {border-top-right-radius: 10px;}
 }
 
 tr {
-    border: thin solid #EAECEF;
-    padding: 5px;
+    border-bottom: thin solid #EAECEF;
+    cursor: pointer;
+    
+    &:hover td {background-color: #EEEFF5;}
+    
+    &:last-child {
+        td:first-child {border-bottom-left-radius: 10px;}
+        td:last-child {border-bottom-right-radius: 10px;}
+    }
 }
 
 td {
     padding: 1rem;
+    background-color: #F5F7FA;
 }
 
 caption {
@@ -49,23 +41,10 @@ caption {
 .table-head {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
 .table-title {
-    text-align: left;
     font-size: 2rem;
-    font-weight: 700;
-}
-
-.add-btn {
-    display: inline-block;
-    border-radius: 10px;
-    border: 2px solid black;
-    padding: 10px;
-    
-    &:hover {
-        background-color: #234AE2;
-        border-color: #234AE2;
-        color: #EEEFF5;
-    }
+    font-weight: 600;
 }
