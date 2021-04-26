@@ -1,16 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles/reset.css">
-  <link rel="stylesheet" href="styles/test.css">
-  <title>Yoga Booking</title>
-</head>
-<body>
-  <h1>Yoga Booking</h1>
-  <p>Bonjour je modifie le projet, je suis un boss.</p>
-  <script src="scripts/index.ts"></script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/test.css">
+    <title>Yoga Booking</title>
+  </head>
+
+  <body>
+    <header id ="Yoga-Booking">
+      <h1>Yoga Booking</h1>
+    </header>
+    <br/>
+    <br/>
+    <div id ="table1">
+      <h3 id ="title">Ateliers</h3>
+      <br/>
+      <table id="Ateliers">
+        <tr>
+          <th>nom</th>
+          <th>salle</th>
+          <th>Intervenants</th>
+          <th>début</th>
+          <th>fin</th>
+        </tr>
+        <tr>
+          <td>Aquaponey</td>
+          <td>Cimenterie</td>
+          <td>Carine Bourgeolais</td>
+          <td>10h05</td>
+          <td>12h00</td>
+        </tr>
+        <tr>
+          <td>Yoga</td>
+          <td>Zénith</td>
+          <td>Anaelle Blot</td>
+          <td>8h05</td>
+          <td>14h00</td>
+        </tr>
+      </table>
+    </div>
+    <br/>
+    <div id = "table2">
+      <h3 id ="title">Intervenants</h3>
+      <br/>
+      <table id="Intervenants">
+        <tr>
+          <th>nom</th>
+          <th>prénom</th>
+          <th>Email</th>
+          <th>téléphone</th>
+        </tr>
+        <tr>
+          <td>Bourgeolais</td>
+          <td>Carine</td>
+          <td>carine.bourgeolais@gmail.com</td>
+          <td>06 07 08 09 10</td>
+        </tr>
+        <tr>
+          <td>Blot</td>
+          <td>Anaelle</td>
+          <td>blot.anaelle@gmail.com</td>
+          <td>07 08 09 10 11</td>
+        </tr>
+      </table>
+    </div>
+    <br/>
+    <div id = "table3">
+      <h3 id ="title">Participants</h3>
+      <br/>
+      <table id="Participants">
+        <tr>
+          <th>nom</th>
+          <th>prénom</th>
+          <th>Email</th>
+          <th>téléphone</th>
+          <th>ateliers</th>
+          <th>paiement</th>
+        </tr>
+        <tr>
+          <td>Gaudrée</td>
+          <td>Vincent</td>
+          <td>gaudree.vincent@gmail.com</td>
+          <td>06 07 08 09 14</td>
+          <td>Yoga</td>
+          <td><div>
+            <input type="checkbox" id="scales" name="scales"
+                   checked>
+            <label for="scales">payé</label>
+          </div></td>
+        </tr>
+        <tr>
+          <td>Gaudrée</td>
+          <td>Mathilde</td>
+          <td>gaudree.mathilde@gmail.com</td>
+          <td>06 86 94 91 34</td>
+          <td>Aquaponey</td>
+          <td><div>
+            <input type="checkbox" id="scales" name="scales">
+            <label for="scales">payé</label>
+          </div></td>
+        </tr>
+      </table>
+    </div>
+    <script src="scripts/index.ts"></script>
+    <br/>
+    <br/>
+    <footer>Lucas BLOT<br/>2021<br/>NSI</footer>
+  </body>
 </html>
