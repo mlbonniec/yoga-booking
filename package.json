@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "parcel-plugin-nuke-dist": "^1.0.1",
+    "posthtml-include": "^1.7.1",
     "typescript": "^4.2.4"
   },
   "browserslist": [
