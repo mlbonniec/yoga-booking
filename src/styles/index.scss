@@ -19,27 +19,27 @@ body {
 header, footer{
     text-shadow: 2px 2px 4px #000000;
 }
-footer {
-    border-radius: 20px;
-    border: 2px solid black;
-}
 table {
     width: 100%;
-    text-align: center;
+    text-align: left;
     background-color: #F5F7FA;
-    }
-th {
-    font-family: monospace;
-    padding: 5px;
+    margin-bottom: 3rem;
 }
+
+th {
+    color: #848484;
+    padding: .75rem 1rem;
+    font-weight: 300;
+    text-transform: capitalize;
+}
+
 tr {
-    font-family: sans-serif;
     border: thin solid #EAECEF;
     padding: 5px;
-    text-align: center;
 }
+
 td {
-    padding: 5px;
+    padding: 1rem;
 }
 
 caption {
@@ -62,4 +62,10 @@ caption {
     border-radius: 10px;
     border: 2px solid black;
     padding: 10px;
+    
+    &:hover {
+        background-color: #234AE2;
+        border-color: #234AE2;
+        color: #EEEFF5;
+    }
 }

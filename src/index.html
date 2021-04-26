@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/reset.css">
-    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/index.scss">
     <title>Yoga Booking</title>
   </head>
 
@@ -16,7 +16,7 @@
     <div id ="table1">
       <div class="table-head">
         <h1 class="table-title">Ateliers</h1>
-      <a class="add-btn">Ajouter un atelier</a>
+        <a href="" class="add-btn">Ajouter un atelier</a>
       </div>
       <br/>
       <table id="Ateliers">
@@ -45,7 +45,10 @@
     </div>
     <br/>
     <div id = "table2">
-      <h1 class="table-title">Intervenants</h1>
+      <div class="table-head">
+        <h1 class="table-title">Intervenants</h1>
+        <a href="" class="add-btn">Ajouter un intervenant</a>
+      </div>
       <br/>
       <table id="Intervenants">
         <tr>
@@ -70,7 +73,10 @@
     </div>
     <br/>
     <div id = "table3">
-      <h1 class="table-title">Participants</h1>
+      <div class="table-head">
+        <h1 class="table-title">Participants</h1>
+        <a href="" class="add-btn">Ajouter un participant</a>
+      </div>
       <br/>
       <table id="Participants">
         <tr>
@@ -107,8 +113,5 @@
       </table>
     </div>
     <script src="scripts/index.ts"></script>
-    <br/>
-    <br/>
-    <footer>Lucas BLOT<br/>2021<br/>NSI</footer>
   </body>
 </html>
