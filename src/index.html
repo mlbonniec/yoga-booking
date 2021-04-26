@@ -1,46 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.css">
-  <link rel="stylesheet" href="styles/reset.css">
-  <link rel="stylesheet" href="styles/test.css">
-  <title>Yoga Booking</title>
-</head>
-<body>
-  <!-- <h1>Yoga Booking</h1>
-  <include src="header.html"></include>
-  <p>Bonjour je modifie le projet, je suis un boss.</p>
-  <form id="form">
-    <input type="number" name="id">
-    <input type="text" placeholder="name" name="name">
-    <input type="text" placeholder="surname" name="surname">
-    <input type="text" placeholder="phone" name="phone">
-    <input type="text" placeholder="email" name="email">
-    <input type="checkbox" name="payed">
-    <button id="submit">Submit</button>
-  </form>
-  <br>
-  <h1>Rooms</h1>
-  <table id="rooms"></table>
-  <br>
-  <h1>Speakers</h1>
-  <table id="speakers"></table>
-  <br>
-  <h1>Participants</h1>
-  <table id="participants"></table>
-  <br>
-  <h1>Workshops</h1> -->
-  <table id="workshops"></table>
-    <header id ="Yoga-Booking">
-      <h1>Yoga Booking</h1>
-    </header>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/test.css">
+    <title>Yoga Booking</title>
+  </head>
+
+  <body>
+    <include src="header.html"></include>
     <br/>
     <br/>
     <div id ="table1">
-      <h3 id ="title">Ateliers</h3>
+      <div class="table-head">
+        <h1 class="table-title">Ateliers</h1>
+      <a class="add-btn">Ajouter un atelier</a>
+      </div>
       <br/>
       <table id="Ateliers">
         <tr>
@@ -68,7 +45,7 @@
     </div>
     <br/>
     <div id = "table2">
-      <h3 id ="title">Intervenants</h3>
+      <h1 class="table-title">Intervenants</h1>
       <br/>
       <table id="Intervenants">
         <tr>
@@ -93,7 +70,7 @@
     </div>
     <br/>
     <div id = "table3">
-      <h3 id ="title">Participants</h3>
+      <h1 class="table-title">Participants</h1>
       <br/>
       <table id="Participants">
         <tr>
@@ -130,9 +107,6 @@
       </table>
     </div>
     <script src="scripts/index.ts"></script>
-    <script src="scripts/forms.ts"></script>
-    <script src="scripts/generateTable.ts"></script>
-    <script src="helpers/query-string.ts"></script>
     <br/>
     <br/>
     <footer>Lucas BLOT<br/>2021<br/>NSI</footer>
