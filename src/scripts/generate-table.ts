@@ -2,7 +2,7 @@ import type { Participant, Room, Speaker, Workshop } from '../@types/structures'
 import Store from '../helpers/store';
 import { toHour } from '../helpers/time';
 
-function generateTable<T extends { [key: string]: any }>(table: HTMLTableElement | null, data: T[]){
+async function generateTable<T extends { [key: string]: any }>(table: HTMLTableElement | null, data: T[], order?: (keyof T)[]){
 	/**
    * Create a table from a data set.
    * @param  {HTMLTableElement | null} table  table element of the page.
@@ -14,35 +14,55 @@ function generateTable<T extends { [key: string]: any }>(table: HTMLTableElement
 		return console.error("Le tableau n'a pas pu se générer correctement. Vérifiez que les paramètres entrés ne sont pas <null>.");
 	
 	// Delete empty message row
-	table.querySelector('table .empty')?.remove();
+	table.querySelector('.empty')?.remove();
 
-	// for loop -> create a row for each element and place a cell for each informations
-	for (let element of data) {
+	for (const d of data) {
 		const row = table.insertRow();
-		
-		for (let key = 0; key<heads.length; key++) {
-		  if (heads[key] === 'id') continue;
-		  const cell = row.insertCell();
 
-		  if (heads[key] === 'start' || heads[key] === 'end') {
-				const text = document.createTextNode(toHour(element[heads[key]]));
-				cell.appendChild(text);
-			} else if (heads[key] === 'payed') {
+		for (const e of order || heads) {
+			if (e === 'id')
+				return;
+
+			const cell = row.insertCell();
+			
+			if (e === 'start' || e === 'end') {
+				cell.innerText = toHour(d[e]);
+			} else if (e === 'workshops') {
+					const workshops = new Store('workshops');
+					const displayedWorkshops = [];
+					
+					for (const workshop of d[e]) {
+						const data: Workshop | null = await workshops.getItem(workshop);
+						if (data)
+							displayedWorkshops.push(data.name)
+						else
+							// TODO: Remove this log message
+							cell.innerText = `unexisting workshop with id ${workshop}`;
+					}
+
+					if (displayedWorkshops.length > 0)
+						cell.innerText = displayedWorkshops.join(', ');
+					else
+						cell.innerText = '-'
+			} else if (e === 'payed') {
 				const div = document.createElement('div');
 				const input = document.createElement('input');
 				const label = document.createElement('label');
 				
+				if (d[e])
+					input.checked = true;
+				
 				input.type = 'checkbox';
+				input.disabled = true;
 				label.innerText = 'Payé'
-
+	
 				div.append(input, label);
 				cell.appendChild(div);
-		  } else {
-				const text = document.createTextNode(element[heads[key]]);
-				cell.appendChild(text);
-		  }
-		}
-	}
+			} else {
+				cell.innerText = d[e];
+			}
+		};
+	};
 }
 
 (async () => {
@@ -59,13 +79,13 @@ function generateTable<T extends { [key: string]: any }>(table: HTMLTableElement
 	
 	const participantsTable = document.getElementById('participants') as HTMLTableElement;
 	const participantsData = await participants.getItems<Participant>();
-	generateTable(participantsTable, participantsData);
+	await generateTable(participantsTable, participantsData, ['payed', 'name', 'surname', 'email', 'phone', 'workshops']);
 
 	const speakersTable = document.getElementById('speakers') as HTMLTableElement;
-	const data2 = await speakers.getItems<Speaker>();
-	generateTable(speakersTable, data2);
+	const speakersData = await speakers.getItems<Speaker>();
+	await generateTable(speakersTable, speakersData, ['name', 'surname', 'email', 'phone']);
 
 	const workshopsTable = document.getElementById('workshops') as HTMLTableElement;
 	const workshopsData = await workshops.getItems<Workshop>();
-	generateTable(workshopsTable, workshopsData);
+	await generateTable(workshopsTable, workshopsData, ['name', 'room', 'speaker', 'start', 'end']);
 })();

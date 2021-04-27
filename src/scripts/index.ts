@@ -3,7 +3,7 @@ import { toSeconds } from '../helpers/time';
 import { fillForm } from '../helpers/forms';
 import Store from '../helpers/store';
 
-import './generateTable';
+import './generate-table';
 
 const data: Room[] = [
 	{
@@ -30,11 +30,11 @@ const data2: Speaker[] = [
 ];
 const data3: Workshop[] = [
 	{
-		name: 'Foo',
-		start: 0,
-		end: 0,
-		room: 0,
-		speaker: 0
+		name: 'AlphaRoom',
+		start: toSeconds('11:00'),
+		end: toSeconds('12:00'),
+		room: 1,
+		speaker: 1
 	}
 ];
 (async () => {
@@ -56,29 +56,25 @@ const data3: Workshop[] = [
 			email: 'jane@doe.com'
 		});
 
-	// for await (const d of data) {
-	// 	await rooms.setItem<Room>(d);
-	// }
 	const speakers = new Store('speakers');
 	const workshops = new Store('workshops');
 
-	if(await rooms.length() == 0){
-		console.log("hey")
+	if(await rooms.length() === 0){
 		for await (const d of data) {
 			await rooms.setItem<Room>(d);
 		}
 	}
-	if(await participants.length() == 0){
+	if(await participants.length() === 0){
 		for await (const d of data1) {
 			await participants.setItem<Participant>(d);
 		}
 	}
-	if(await speakers.length() == 0){
+	if(await speakers.length() === 0){
 		for await (const d of data2) {
 			await speakers.setItem<Speaker>(d);
 		}
 	}
-	if(await workshops.length() == 0){
+	if(await workshops.length() === 0){
 		for await (const d of data3) {
 			await workshops.setItem<Workshop>(d);
 		}
