@@ -27,6 +27,8 @@ tr {
         td:first-child {border-bottom-left-radius: 10px;}
         td:last-child {border-bottom-right-radius: 10px;}
     }
+    
+    &.empty {text-align: center;}
 }
 
 td {

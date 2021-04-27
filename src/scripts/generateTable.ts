@@ -8,12 +8,13 @@ function generateTable<T extends { [key: string]: any }>(table: HTMLTableElement
    * @param  {HTMLTableElement | null} table  table element of the page.
    * @param  {object} data   array of objects. 
    */
+	// TODO: add parameter to order columns
 	const heads = Object.keys(data[0]);
-	
-	console.log(heads);
-	
 	if(table == null || data == null || !heads)
 		return console.error("Le tableau n'a pas pu se générer correctement. Vérifiez que les paramètres entrés ne sont pas <null>.");
+	
+	// Delete empty message row
+	table.querySelector('table .empty')?.remove();
 
 	// for loop -> create a row for each element and place a cell for each informations
 	for (let element of data) {
@@ -23,8 +24,6 @@ function generateTable<T extends { [key: string]: any }>(table: HTMLTableElement
 		  if (heads[key] === 'id') continue;
 		  const cell = row.insertCell();
 
-			console.log(heads[key]);
-			
 		  if (heads[key] === 'start' || heads[key] === 'end') {
 				const text = document.createTextNode(toHour(element[heads[key]]));
 				cell.appendChild(text);
@@ -42,9 +41,7 @@ function generateTable<T extends { [key: string]: any }>(table: HTMLTableElement
 				const text = document.createTextNode(element[heads[key]]);
 				cell.appendChild(text);
 		  }
-		  
 		}
-		console.log();
 	}
 }
 
