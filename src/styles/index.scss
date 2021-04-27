@@ -34,17 +34,13 @@ td {
     background-color: #F5F7FA;
 }
 
-caption {
-    font-family: sans-serif;
-}
-
-.table-head {
+.table-informations {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
-}
-
-.table-title {
-    font-size: 2rem;
-    font-weight: 600;
+    
+    .table-title {
+        font-size: 2rem;
+        font-weight: 600;
+    }    
 }
