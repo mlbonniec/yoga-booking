@@ -3,6 +3,8 @@ import { toSeconds } from '../helpers/time';
 import { fillForm } from '../helpers/forms';
 import Store from '../helpers/store';
 
+// import './generateTable';
+
 const data: Room[] = [
 	{
 		name: 'Jane',
