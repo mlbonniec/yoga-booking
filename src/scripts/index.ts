@@ -1,5 +1,5 @@
 import type { Participant, Room, Speaker, Workshop } from '../@types/structures';
-import {toSeconds} from '../helpers/time';
+import { toSeconds } from '../helpers/time';
 import { fillForm } from '../helpers/forms';
 import Store from '../helpers/store';
 
@@ -30,7 +30,7 @@ const data3: Workshop[] = [
 	{
 		name: 'Foo',
 		start: 0,
-		end: 1,
+		end: 0,
 		room: 0,
 		speaker: 0
 	}
@@ -45,11 +45,11 @@ const data3: Workshop[] = [
 	const form = document.getElementById('form');
 	if (form)
 		fillForm<Partial<Participant> & { id: number; payed: boolean; time: number }>(form as HTMLFormElement, {
-			id: 2,
+			id: 1,
 			time: toSeconds("09:30"),
 			payed: true,
 			name: 'Jane',
-			surname: 'DOE',
+			surname: 'Donald',
 			phone: '+123456789',
 			email: 'jane@doe.com'
 		});

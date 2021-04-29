@@ -1,7 +1,8 @@
 import type { Participant, Room, Speaker, Workshop } from '../@types/structures';
 import Store from '../helpers/store';
+import { toHour } from '../helpers/time';
 
-function generateTableHead(table: HTMLTableElement | null, data:object){
+function generateTableHead(table: HTMLTableElement | null, data:object): Array<string> | null {
 	/**
    * create the table head from a data set.
    * @param  {HTMLTableElement | null} table  table element of the page.
@@ -9,19 +10,21 @@ function generateTableHead(table: HTMLTableElement | null, data:object){
    * @return {boolean} default false
    */
 	
-	if(table == null || data == null) return true;
+	if(table == null || data == null) return null;
 		
 	let thead = table.createTHead();
 	let row = thead.insertRow();
 	//create a name for each parameters that the table will take
+	let ar = Array<string>();
 	for (let key in data) {
 		if(key === "id") continue;
 		let th = document.createElement("th");
 		let text = document.createTextNode(key);
 		th.appendChild(text);
 		row.appendChild(th);
+		ar.push(key)
 	  }
-	  return false;
+	  return ar;
 }
 
 function generateTable<T extends { [key: string]: any }>(table: HTMLTableElement | null, data: T[]){
@@ -30,19 +33,27 @@ function generateTable<T extends { [key: string]: any }>(table: HTMLTableElement
    * @param  {HTMLTableElement | null} table  table element of the page.
    * @param  {object} data   array of objects. 
    */
-
-	if(table == null || data == null || generateTableHead(table, data[0])){
+	let heads = generateTableHead(table, data[0]);
+	if(table == null || data == null || !heads){
 		console.error("Le tableau n'a pas pu se générer correctement. Vérifiez que les paramètres entrés ne sont pas <null>.")
 		return;
 	};
 	//for loop -> create a row for each element and place a cell for each informations
 	for (let element of data) {
 		let row = table.insertRow();
-		for (let key in element) {
-		  if(key === "id") continue;
+		
+		for (let key = 0; key<heads.length; key++) {
+		  if(heads[key] === "id") continue;
 		  let cell = row.insertCell();
-		  let text = document.createTextNode(element[key]);
-		  cell.appendChild(text);
+		  
+		  if(heads[key] === "start" || heads[key] === "end"){
+			let text = document.createTextNode(toHour(element[heads[key]]));
+			cell.appendChild(text);
+		  }else{
+			let text = document.createTextNode(element[heads[key]]);
+			cell.appendChild(text);
+		  }
+		  
 		}
 	  }
 }

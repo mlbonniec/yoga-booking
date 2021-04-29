@@ -1,39 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles/reset.css">
-  <link rel="stylesheet" href="styles/test.css">
-  <title>Yoga Booking</title>
-</head>
-<body>
-  <h1>Yoga Booking</h1>
-  <p>Bonjour je modifie le projet, je suis un boss.</p>
-  <form id="form">
-    <input type="number" name="id">
-    <input type="checkbox" name="payed">
-    <input type="time" name="time">
-    <input type="text" placeholder="name" name="name">
-    <input type="text" placeholder="surname" name="surname">
-    <input type="text" placeholder="phone" name="phone">
-    <input type="text" placeholder="email" name="email">
-  </form>
-  <br>
-  <h1>Rooms</h1>
-  <table id="rooms"></table>
-  <br>
-  <h1>Speakers</h1>
-  <table id="speakers"></table>
-  <br>
-  <h1>Participants</h1>
-  <table id="participants"></table>
-  <br>
-  <h1>Workshops</h1>
-  <table id="workshops"></table>
-  <br>
-  <script src="scripts/index.ts"></script>
-  <script src="scripts/generateTable.ts"></script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/global.scss">
+    <link rel="stylesheet" href="styles/index.scss">
+    <link rel="stylesheet" href="styles/components/header.scss">
+    <title>Yoga Booking</title>
+  </head>
+
+  <body>
+    <include src="header.html"></include>
+    <div>
+      <div class="table-head">
+        <h1 class="table-title">Ateliers</h1>
+        <a href="add-workshop.html" class="add-btn">Ajouter un atelier</a>
+      </div>
+      <table id="workshops">
+        <tr>
+          <th>Nom</th>
+          <th>Salle</th>
+          <th>Intervenants</th>
+          <th>Début</th>
+          <th>Fin</th>
+        </tr>
+        <tr>
+          <td>Aquaponey</td>
+          <td>Cimenterie</td>
+          <td>Carine Bourgeolais</td>
+          <td>10h05</td>
+          <td>12h00</td>
+        </tr>
+        <tr>
+          <td>Yoga</td>
+          <td>Zénith</td>
+          <td>Anaelle Blot</td>
+          <td>8h05</td>
+          <td>14h00</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <div class="table-head">
+        <h1 class="table-title">Intervenants</h1>
+        <a href="add-speaker.html" class="add-btn">Ajouter un intervenant</a>
+      </div>
+      <table id="speakers">
+        <tr>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Email</th>
+          <th>Téléphone</th>
+        </tr>
+        <tr>
+          <td>Bourgeolais</td>
+          <td>Carine</td>
+          <td>carine.bourgeolais@gmail.com</td>
+          <td>06 07 08 09 10</td>
+        </tr>
+        <tr>
+          <td>Blot</td>
+          <td>Anaelle</td>
+          <td>blot.anaelle@gmail.com</td>
+          <td>07 08 09 10 11</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <div class="table-head">
+        <h1 class="table-title">Participants</h1>
+        <a href="add-participant.html" class="add-btn">Ajouter un participant</a>
+      </div>
+      <table id="participants">
+        <tr>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Email</th>
+          <th>Téléphone</th>
+          <th>Ateliers</th>
+          <th>Paiement</th>
+        </tr>
+        <tr>
+          <td>Gaudrée</td>
+          <td>Vincent</td>
+          <td>gaudree.vincent@gmail.com</td>
+          <td>06 07 08 09 14</td>
+          <td>Yoga</td>
+          <td>
+            <div>
+              <input type="checkbox" id="payed" checked>
+              <label for="scales">Payé</label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Gaudrée</td>
+          <td>Mathilde</td>
+          <td>gaudree.mathilde@gmail.com</td>
+          <td>06 86 94 91 34</td>
+          <td>Aquaponey</td>
+          <td>
+            <div>
+              <input type="checkbox" id="scales" name="scales">
+              <label for="scales">Payé</label>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <script src="scripts/index.ts"></script>
+  </body>
 </html>
