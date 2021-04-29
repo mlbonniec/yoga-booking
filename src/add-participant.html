@@ -16,26 +16,50 @@
         <h1>Ajouter un participant</h1>
         <p>Pour ajouter un participant, remplissez ses informations personnelles, puis sélectionnez les ateliers auquel il souhaite participer.</p>
     </div>
-    <form>
-        <div id="names">
-            <div class="input-container">
-                <span>Prénom</span>
-                <input type="text" name="firstname" placeholder="Lucas"/>
+    <div class="container">
+        <div class="form">
+            <form>
+                <div class="check">
+                    <input type="checkbox" id="payed" checked>
+                    <label for="scales">Règlement effectué</label>
+                </div>
+                <div id="names">
+                    <div class="input-container">
+                        <span>Prénom</span>
+                        <input type="text" name="firstname" placeholder="Lucas"/>
+                    </div>
+                    <div class="input-container">
+                        <span>Nom de famille</span>
+                        <input type="text" name="lastname" placeholder="Blot"/>
+                    </div> 
+                </div>
+                <div class="input-container">
+                    <span>Numéro de téléphone</span>
+                    <input type="text" name="phone-number" placeholder="06 07 08 09 10"/>
+                </div>
+                <div class="input-container">
+                    <span>Adresse email</span>
+                    <input type="email" name="mail" placeholder="example@gmail.com"/>
+                </div>
+            </form>
+            <a href="add-participant.html" class="add-btn">Ajouter ce participant</a>
+        </div>
+        <div class="workshops">
+            <h4>Ateliers</h4>
+            <div class="workshop">
+                <input type="checkbox" id="payed">
+                <label for="scales">Pratique • 10h00 - 11h00 • Nandi</label>
             </div>
-            <div class="input-container">
-                <span>Nom de famille</span>
-                <input type="text" name="lastname" placeholder="Blot"/>
-            </div> 
+            <div class="workshop">
+                <input type="checkbox" id="payed">
+                <label for="scales">Aquaponey • 8h05 - 14h00 • AlphaRoom</label>
+            </div>
+            <div class="workshop">
+                <input type="checkbox" id="payed">
+                <label for="scales">NSI • 10h00 - 12h00 • BetaRoomLol</label>
+            </div>
         </div>
-        <div class="input-container">
-            <span>Numéro de téléphone</span>
-            <input type="text" name="phone-number" placeholder="06 07 08 09 10"/>
-        </div>
-        <div class="input-container">
-            <span>Adresse email</span>
-            <input type="email" name="mail" placeholder="example@gmail.com"/>
-        </div>
-    </form>
+    </div>
     <br/>
 </body>
 </html>
