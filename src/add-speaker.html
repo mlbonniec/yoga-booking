@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/global.scss">
+	<link rel="stylesheet" href="styles/add.scss">
+	<link rel="stylesheet" href="styles/components/header.scss">
+	<title>Ajouter un participant</title>
+</head>
+<body>
+    <include src="header.html"></include>
+    <div id="informations">
+        <h1>Ajouter un intervenant</h1>
+        <p>Pour ajouter un intervenant, remplissez ses informations personnelles, puis sélectionnez les ateliers auquel il souhaite participer.</p>
+    </div>
+    <div class="container">
+        <div class="form">
+            <form>
+                <div id="names">
+                    <div class="input-container">
+                        <span>Prénom</span>
+                        <input type="text" name="firstname" placeholder="Lucas"/>
+                    </div>
+                    <div class="input-container">
+                        <span>Nom de famille</span>
+                        <input type="text" name="lastname" placeholder="Blot"/>
+                    </div> 
+                </div>
+                <div class="input-container">
+                    <span>Numéro de téléphone</span>
+                    <input type="text" name="phone-number" placeholder="06 07 08 09 10"/>
+                </div>
+                <div class="input-container">
+                    <span>Adresse email</span>
+                    <input type="email" name="mail" placeholder="example@gmail.com"/>
+                </div>
+            </form>
+            <a href="add-participant.html" class="add-btn">Ajouter cet intervenant</a>
+        </div>
+        <div class="workshops">
+            <h4>Ateliers</h4>
+            <div class="workshop">
+                <input type="checkbox" id="payed">
+                <label for="scales">Pratique • 10h00 - 11h00 • Nandi</label>
+            </div>
+            <div class="workshop">
+                <input type="checkbox" id="payed">
+                <label for="scales">Aquaponey • 8h05 - 14h00 • AlphaRoom</label>
+            </div>
+            <div class="workshop">
+                <input type="checkbox" id="payed">
+                <label for="scales">NSI • 10h00 - 12h00 • BetaRoomLol</label>
+            </div>
+        </div>
+    </div>
+    <br/>
+</body>
+</html>
