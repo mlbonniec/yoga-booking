@@ -12,7 +12,7 @@ export default async function conflict(id: number, debut: number, fin: number): 
     if (ResultW === null)
         return false;
 
-    for (const element in ResultW.workshops) {
+    for (const element of ResultW.workshops) {
         const workshop = await tableW.getItem<Workshop>(element);
         if (workshop !== null) {
             const debutW = workshop.start;
