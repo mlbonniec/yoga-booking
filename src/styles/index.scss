@@ -1,4 +1,15 @@
-table {
+.table-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
+    background-color: #F5F7FA;
+    border-radius: 10px;
+    
+    span {
+        padding: 1rem;
+    }
+}
+
+table, .table-grid {
     width: 100%;
     text-align: left;
     margin-bottom: 3rem;
@@ -40,6 +51,14 @@ td {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
+    
+    &.column {
+        flex-direction: column;
+        
+        .table-title {
+            margin-bottom: .5rem;
+        }
+    }
     
     .table-title {
         font-size: 2rem;
