@@ -2,13 +2,7 @@ import type { Participant, Room, Speaker, Workshop } from '../@types/structures'
 import Store from '../helpers/store';
 import { toHour } from '../helpers/time';
 
-async function generateTable<T extends { [key: string]: any }>(table: HTMLTableElement | null, data: T[], order?: (keyof T)[]){
-	/**
-   * Create a table from a data set.
-   * @param  {HTMLTableElement | null} table  table element of the page.
-   * @param  {object} data   array of objects. 
-   */
-	// TODO: add parameter to order columns
+async function generateTable<T extends { [key: string]: any }>(table: HTMLTableElement | null, data: T[], redirectPage: string, order?: (keyof T)[]){
 	const heads = Object.keys(data[0]);
 	if(table == null || data == null || !heads)
 		return console.error("Le tableau n'a pas pu se générer correctement. Vérifiez que les paramètres entrés ne sont pas <null>.");
@@ -18,6 +12,8 @@ async function generateTable<T extends { [key: string]: any }>(table: HTMLTableE
 
 	for (const d of data) {
 		const row = table.insertRow();
+		// Add click event to redirect to specified page with parameter id
+		row.addEventListener('click', () => window.location.href = `${redirectPage}.html?id=${d.id}`);
 
 		for (const e of order || heads) {
 			if (e === 'id')
@@ -83,13 +79,13 @@ async function generateTable<T extends { [key: string]: any }>(table: HTMLTableE
 	
 	const participantsTable = document.getElementById('participants') as HTMLTableElement;
 	const participantsData = await participants.getItems<Participant>();
-	await generateTable(participantsTable, participantsData, ['payed', 'name', 'surname', 'email', 'phone', 'workshops']);
+	await generateTable(participantsTable, participantsData, 'add-participant', ['payed', 'name', 'surname', 'email', 'phone', 'workshops']);
 
 	const speakersTable = document.getElementById('speakers') as HTMLTableElement;
 	const speakersData = await speakers.getItems<Speaker>();
-	await generateTable(speakersTable, speakersData, ['name', 'surname', 'email', 'phone']);
+	await generateTable(speakersTable, speakersData, 'add-speaker', ['name', 'surname', 'email', 'phone']);
 
 	const workshopsTable = document.getElementById('workshops') as HTMLTableElement;
 	const workshopsData = await workshops.getItems<Workshop>();
-	await generateTable(workshopsTable, workshopsData, ['name', 'room', 'speaker', 'start', 'end']);
+	await generateTable(workshopsTable, workshopsData, 'add-workshop', ['name', 'room', 'speaker', 'start', 'end']);
 })();
