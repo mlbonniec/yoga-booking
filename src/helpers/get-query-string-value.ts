@@ -18,7 +18,7 @@ export function getQueryStringValue(key: string): number | string | null | boole
   else if (value === 'true' || value === 'false')
     return JSON.parse(value);
 
-  const nbr = parseInt(value, 10);
+  const nbr = parseFloat(value);
   if (isNaN(nbr))
     return value;
   return nbr;
