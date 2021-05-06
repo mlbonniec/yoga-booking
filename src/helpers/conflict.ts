@@ -1,27 +1,28 @@
 import type { Participant, Workshop } from '../@types/structures';
 import Store from '../helpers/store';
 
-export default async function conflict(id: number, debut: number, fin: number): Promise<boolean> {
-    const tableP = new Store('Participant');
-    const tableW = new Store('Workshop');
-    
-    // TODO: add Speaker type
-    const ResultW = await tableP.getItem<Participant>(id);
+/**
+ * @description Check if there is a schedule conflict between participant workshops.
+ * @example
+ * const participant: Participant = { name: 'Jane', surname: 'DOE', phone: '+123456789', email: 'jane@doe.com', payed: false, workshops: [] };
+ * const workshop: Workshop = { name: 'AlphaRoom', start: toSeconds('11:00'), end: toSeconds('12:00'), room: 1, speaker: 1 }
+ * await participantConflict(participant, workshop); // false
+ */
+export default async function participantConflict(participant: Participant, workshop: Workshop): Promise<boolean> {
+  const workshops = new Store('workshops');
+  const { start, end } = workshop;
 
-    // { clé: valeur } = condition
-    if (ResultW === null)
-        return false;
+  for (const element of participant.workshops) {
+    const participantWorkshop = await workshops.getItem<Workshop>(element);
 
-    for (const element of ResultW.workshops) {
-        const workshop = await tableW.getItem<Workshop>(element);
-        if (workshop !== null) {
-            const debutW = workshop.start;
-            const finW = workshop.end;
+    if (participantWorkshop) {
+      const startW = participantWorkshop.start;
+      const endW = participantWorkshop.end;
 
-            if ((debut >= debutW || debut <= finW) || (fin >= debutW || fin <= finW))
-                return true;
-        }
+      if ((start >= startW || start <= endW) || (end >= startW || end <= endW))
+        return true;
     }
-    
-    return false;
+  }
+  
+  return false;
 }
