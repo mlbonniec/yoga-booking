@@ -22,6 +22,7 @@ export function fillForm<T extends { [key: string]: any }>(el: HTMLFormElement, 
 		const value = data[name];
 		switch(e.type) {
 			case 'text':
+			case 'email':
 				e.value = value;
 				break; 
 			case 'checkbox':
@@ -51,6 +52,7 @@ export function getFormData(form: HTMLFormElement): object {
 
 		switch(e.type) {
 			case 'text':
+			case 'email':
 				data[attr] = e.value;
 				break; 
 			case 'checkbox':
