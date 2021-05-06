@@ -46,7 +46,7 @@
         flex-direction: column;
         flex: 1;
         
-        form {
+        .content {
             background-color: white;
             padding: 1rem;
             border-radius: 10px;
@@ -103,6 +103,7 @@
             border-color: #234AE2;
             transition: .5s all cubic-bezier(0.87, 0, 0.13, 1);
             text-align: center;
+            width: 100%;
         
             &:hover {
                 background-color: #eaecef;
