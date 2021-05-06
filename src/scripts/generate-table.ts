@@ -27,21 +27,25 @@ async function generateTable<T extends { [key: string]: any }>(table: HTMLTableE
 			
 			if (e === 'start' || e === 'end') {
 				cell.innerText = toHour(d[e]);
-			} else if (e === 'workshops') {
-					const workshops = new Store('workshops');
-					const displayedWorkshops = [];
-					
-					for (const workshop of d[e]) {
-						const data: Workshop | null = await workshops.getItem(workshop);
+			} else if (e === 'workshops' || e === 'room') {
+					const displayedNames = [];
+
+					if (e === 'workshops') {
+						const workshops = new Store('workshops');
+						for (const item of d[e]) {
+							const data: Workshop | null = await workshops.getItem<Workshop>(item);
+							if (data)
+								displayedNames.push(data.name);
+						}	
+					} else if (e === 'room') {
+						const rooms = new Store('rooms');
+						const data: Room | null = await rooms.getItem<Room>(d.id);
 						if (data)
-							displayedWorkshops.push(data.name)
-						else
-							// TODO: Remove this log message
-							cell.innerText = `unexisting workshop with id ${workshop}`;
+							displayedNames.push(data.name);
 					}
 
-					if (displayedWorkshops.length > 0)
-						cell.innerText = displayedWorkshops.join(', ');
+					if (displayedNames.length > 0)
+						cell.innerText = displayedNames.join(', ');
 					else
 						cell.innerText = '-'
 			} else if (e === 'payed') {
