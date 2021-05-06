@@ -26,7 +26,7 @@ export function success(title: string, options?: Omit<SweetAlertOptions, 'title'
  * @example <caption>Example usage with options.</caption>
  * success('The operation failed.', { timer: 5000, showConfirmButton: false });
  */
-export function error(title: string, options?: Omit<SweetAlertOptions, 'title' | 'toast' | 'icon'>): Promise<SweetAlertResult<typeof options>> {
+export function error(title: string, options?: Omit<SweetAlertOptions, 'title' | 'icon'>): Promise<SweetAlertResult<typeof options>> {
 	return swal.fire({
 		icon: 'error',
 		title,
