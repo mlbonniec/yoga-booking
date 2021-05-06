@@ -4,42 +4,45 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
 	<link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/global.scss">
 	<link rel="stylesheet" href="styles/add.scss">
 	<link rel="stylesheet" href="styles/components/header.scss">
 	<title>Ajouter un participant</title>
 </head>
-<body>
-    <include src="header.html"></include>
+<body data-store-name="workshops">
     <div id="informations">
         <h1>Ajouter un atelier</h1>
         <p>Pour ajouter un atelier, remplissez son nom, sa salle et son horaire.</p>
     </div>
-        <div class="container" id="add-workshop">
-            <div class="form">
-                <form>
+    <div class="container" id="add-workshop">
+        <div class="form">
+            <form>
+                <div class="content">
                     <div id="names">
                         <div class="input-container">
                             <span>Heure de début</span>
-                            <input type="text" name="hour" placeholder="10h00"/>
+                            <input type="text" name="start" placeholder="10h00" />
                         </div>
                         <div class="input-container">
                             <span>Heure de fin</span>
-                            <input type="text" name="hour" placeholder="12h00"/>
+                            <input type="text" name="end" placeholder="12h00" />
                         </div> 
                     </div>
                     <div class="input-container">
                         <span>Nom de l'atelier</span>
-                        <input type="text" name="activities" placeholder="Yoga"/>
+                        <input type="text" name="name" placeholder="Yoga" />
                     </div>
                     <div class="input-container">
                         <span>Salle réservée pour l'atelier</span>
-                        <input type="email" name="salle" placeholder="Zénith"/>
+                        <input type="text" name="room" placeholder="Zénith" />
                     </div>
-                </form>
-                <a href="add-participant.html" class="add-btn">Ajouter cet atelier</a>
+                </div>
+                <input type="submit" class="add-btn" value="Ajouter cet atelier">
+            </form>
         </div>
-    <br/>
+    </div>
+    <script src="./scripts/add.ts"></script>
 </body>
 </html>

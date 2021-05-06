@@ -4,14 +4,14 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
 	<link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/global.scss">
 	<link rel="stylesheet" href="styles/add.scss">
 	<link rel="stylesheet" href="styles/components/header.scss">
 	<title>Ajouter un participant</title>
 </head>
-<body>
-    <include src="header.html"></include>
+<body data-store-name="participants">
     <div id="informations">
         <h1>Ajouter un participant</h1>
         <p>Pour ajouter un participant, remplissez ses informations personnelles, puis sélectionnez les ateliers auquel il souhaite participer.</p>
@@ -19,30 +19,32 @@
     <div class="container">
         <div class="form">
             <form>
-                <div class="check">
-                    <input type="checkbox" id="payed" checked>
-                    <label for="scales">Règlement effectué</label>
-                </div>
-                <div id="names">
-                    <div class="input-container">
-                        <span>Prénom</span>
-                        <input type="text" name="firstname" placeholder="Lucas"/>
+                <div class="content">
+                    <div class="check">
+                        <input type="checkbox" name="payed">
+                        <label for="scales">Règlement effectué</label>
+                    </div>
+                    <div id="names">
+                        <div class="input-container">
+                            <span>Prénom</span>
+                            <input type="text" name="name" placeholder="Lucas"/>
+                        </div>
+                        <div class="input-container">
+                            <span>Nom de famille</span>
+                            <input type="text" name="surname" placeholder="Blot"/>
+                        </div> 
                     </div>
                     <div class="input-container">
-                        <span>Nom de famille</span>
-                        <input type="text" name="lastname" placeholder="Blot"/>
-                    </div> 
+                        <span>Numéro de téléphone</span>
+                        <input type="text" name="phone" placeholder="06 07 08 09 10"/>
+                    </div>
+                    <div class="input-container">
+                        <span>Adresse email</span>
+                        <input type="email" name="email" placeholder="example@gmail.com"/>
+                    </div>
                 </div>
-                <div class="input-container">
-                    <span>Numéro de téléphone</span>
-                    <input type="text" name="phone-number" placeholder="06 07 08 09 10"/>
-                </div>
-                <div class="input-container">
-                    <span>Adresse email</span>
-                    <input type="email" name="mail" placeholder="example@gmail.com"/>
-                </div>
+                <input type="submit" class="add-btn" value="Ajouter ce participant"/>
             </form>
-            <a href="add-participant.html" class="add-btn">Ajouter ce participant</a>
         </div>
         <div class="workshops">
             <h4>Ateliers</h4>
@@ -60,6 +62,6 @@
             </div>
         </div>
     </div>
-    <br/>
+    <script src="./scripts/add.ts"></script>
 </body>
 </html>
