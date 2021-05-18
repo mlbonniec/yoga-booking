@@ -2,6 +2,7 @@ import { fillForm, getFormData } from '../helpers/forms';
 import { getQueryStringValue } from '../helpers/get-query-string-value';
 import { error } from '../helpers/notifications';
 import Store from '../helpers/store';
+import { checkstring } from '../helpers/verifications';
 
 const form = document.querySelector('form') as HTMLFormElement | null;
 
@@ -32,6 +33,21 @@ form?.addEventListener('submit', (e) => {
 	const data = getFormData(form);
 	
 	console.log(data);
+	for(const [key, value] of Object.entries(data)){
+		
+		if( key === "start" || key === "end"){
+			console.log(key, checkstring("time",value))
+		}
+		else if( key === "name" || key === "room" || key === "surname"){
+			console.log(key, checkstring("name",value))
+		}
+		else if( key === "email" || key === "room"){
+			console.log(key, checkstring("name",value))
+		}else if( key === "phone"){
+			console.log(key, checkstring("phone",value))
+		}
+		
+	}
 	
 	// + Ajouter les fonctionnalités de sauvegarde
 	error('Il reste à sauvegarder ces données', { toast: true });
