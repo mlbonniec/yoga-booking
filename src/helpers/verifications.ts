@@ -1,3 +1,10 @@
+/**
+ * @description Check if a string correspond to the correct syntax depending of a provided type.
+ * @example
+ * checkstring("time",bonjour) // false
+ * checkstring("time",12h50) // true
+ * checkstring("time",32h10) // false
+ */
 export function checkstring(type: string, value:string) : boolean{
     var decision = false;
     switch(type){
