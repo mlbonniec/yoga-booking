@@ -13,11 +13,11 @@ function silentRedirection(url = window.location.pathname): void {
 document.addEventListener('DOMContentLoaded', async () => {
 	const id = getQueryStringValue('id');
 	const { storeName } = document.body.dataset;
-	
+
 	// Rewrite URL by removing parameters
 	if (typeof id !== 'number' || !storeName || !form)
 		return silentRedirection();
-	
+
 	const store = new Store(storeName);
 	const data = await store.getItem(id);
 	if (!data)
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 form?.addEventListener('submit', (e) => {
 	e.preventDefault();
-	
+
 	const data = getFormData(form);
 	const debug = checkform(data)
 	//fonctionnalités de sauvegarde
@@ -38,8 +38,6 @@ form?.addEventListener('submit', (e) => {
 		if(type !== null) addToDB(type, data);
 		success('Données ajoutées à la base de donnée.');
 	}else{
-		error('Erreur : '+debug, { toast: true });
+		error('Erreur : '+debug);
 	}
-	
-	
 });

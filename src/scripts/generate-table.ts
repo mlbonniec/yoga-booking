@@ -59,6 +59,11 @@ async function generateTable<T extends { [key: string]: any }>(table: HTMLTableE
 	
 				div.append(input, label);
 				cell.appendChild(div);
+			} else if (e === 'speaker') {
+				const speakers = new Store('speakers');
+				const data: Speaker | null = await speakers.getItem<Speaker>(d.id);
+				if (data)
+					cell.innerText = data.name;
 			} else {
 				cell.innerText = d[e];
 			}
