@@ -1,3 +1,4 @@
+import { Participant, Room, Speaker, Workshop } from '../@types/structures';
 import { addToDB, fillForm, getFormData } from '../helpers/forms';
 import { getQueryStringValue } from '../helpers/get-query-string-value';
 import { error, success } from '../helpers/notifications';
@@ -30,14 +31,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 form?.addEventListener('submit', (e) => {
 	e.preventDefault();
 
-	const data = getFormData(form);
+	const data: object & { id?: number } = getFormData(form);
 	const debug = checkform(data)
 	//fonctionnalités de sauvegarde
-	if(debug.length === 0){
-		const type = form.getAttribute("id");
-		if(type !== null) addToDB(type, data);
-		success('Données ajoutées à la base de donnée.');
-	}else{
+	if(debug.length === 0) {
+		const id = getQueryStringValue('id');
+		if (id && typeof id === 'number')
+			data.id = id;
+
+		const type = form.getAttribute('id');
+		if (type)
+			addToDB(type, data);
+		success('Données ajoutées à la base de donnée.');	
+	} else {
 		error('Erreur : '+debug);
 	}
 });
