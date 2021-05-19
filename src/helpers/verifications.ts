@@ -20,9 +20,38 @@ export function checkstring(type: string, value:string) : boolean{
         case "phone":
             decision = /^([0-9]{2}\s){4}[0-9]{2}$/g.test(value)
             if(!decision) decision = /^([0-9]{2}){5}$/g.test(value)
+            if(!decision) decision = /^\+([0-9]{2,3})+([0-9]{9})$/g.test(value)
             break
         default:
             decision = false;
     }
     return decision;
+}
+
+export function checkform(data: object): Array<String>{
+    var debug = [];
+	for(const [key, value] of Object.entries(data)){
+		
+		if( key === "start" || key === "end"){
+			if(!checkstring("time",value)){
+				debug.push(key)
+			}
+		}
+		else if( key === "name" || key === "room" || key === "surname"){
+			if(!checkstring("name",value)){
+				debug.push(key)
+			}
+		}
+		else if( key === "email"){
+			if(!checkstring("email",value)){
+				debug.push(key)
+			}
+		}else if( key === "phone"){
+			if(!checkstring("phone",value)){
+				debug.push(key)
+			}
+		}
+		
+	}
+    return debug;
 }

@@ -1,8 +1,8 @@
-import { fillForm, getFormData } from '../helpers/forms';
+import { addToDB, fillForm, getFormData } from '../helpers/forms';
 import { getQueryStringValue } from '../helpers/get-query-string-value';
-import { error } from '../helpers/notifications';
+import { error, success } from '../helpers/notifications';
 import Store from '../helpers/store';
-import { checkstring } from '../helpers/verifications';
+import { checkform, checkstring } from '../helpers/verifications';
 
 const form = document.querySelector('form') as HTMLFormElement | null;
 
@@ -31,24 +31,15 @@ form?.addEventListener('submit', (e) => {
 	e.preventDefault();
 	
 	const data = getFormData(form);
-	
-	console.log(data);
-	for(const [key, value] of Object.entries(data)){
-		
-		if( key === "start" || key === "end"){
-			console.log(key, checkstring("time",value))
-		}
-		else if( key === "name" || key === "room" || key === "surname"){
-			console.log(key, checkstring("name",value))
-		}
-		else if( key === "email" || key === "room"){
-			console.log(key, checkstring("name",value))
-		}else if( key === "phone"){
-			console.log(key, checkstring("phone",value))
-		}
-		
+	const debug = checkform(data)
+	//fonctionnalités de sauvegarde
+	if(debug.length === 0){
+		const type = form.getAttribute("id");
+		if(type !== null) addToDB(type, data);
+		success('Données ajoutées à la base de donnée.');
+	}else{
+		error('Erreur : '+debug, { toast: true });
 	}
 	
-	// + Ajouter les fonctionnalités de sauvegarde
-	error('Il reste à sauvegarder ces données', { toast: true });
+	
 });
