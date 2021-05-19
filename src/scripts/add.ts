@@ -12,11 +12,11 @@ function silentRedirection(url = window.location.pathname): void {
 document.addEventListener('DOMContentLoaded', async () => {
 	const id = getQueryStringValue('id');
 	const { storeName } = document.body.dataset;
-	
+
 	// Rewrite URL by removing parameters
 	if (typeof id !== 'number' || !storeName || !form)
 		return silentRedirection();
-	
+
 	const store = new Store(storeName);
 	const data = await store.getItem(id);
 	if (!data)
@@ -28,11 +28,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 form?.addEventListener('submit', (e) => {
 	e.preventDefault();
-	
+
 	const data = getFormData(form);
-	
+
 	console.log(data);
-	
+
 	// + Ajouter les fonctionnalités de sauvegarde
-	error('Il reste à sauvegarder ces données', { toast: true });
+	error('Il reste à sauvegarder ces données');
 });
