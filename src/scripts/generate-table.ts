@@ -3,10 +3,11 @@ import Store from '../helpers/store';
 import { toHour } from '../helpers/time';
 
 async function generateTable<T extends { [key: string]: any }>(table: HTMLTableElement | null, data: T[], redirectPage: string, order?: (keyof T)[]){
-	const heads = Object.keys(data[0]);
-	if(table == null || data == null || !heads)
+	if (!table || !data || data.length === 0)
 		return console.error("Le tableau n'a pas pu se générer correctement. Vérifiez que les paramètres entrés ne sont pas <null>.");
-	
+
+	const heads = Object.keys(data[0]);
+
 	// Delete empty message row
 	table.querySelector('.empty')?.remove();
 
