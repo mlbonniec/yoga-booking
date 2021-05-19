@@ -29,11 +29,13 @@ async function generateTable<T extends { [key: string]: any }>(table: HTMLTableE
 
 					if (e === 'workshops') {
 						const workshops = new Store('workshops');
-						for (const item of d[e]) {
-							const data: Workshop | null = await workshops.getItem<Workshop>(item);
-							if (data)
-								displayedNames.push(data.name);
-						}	
+						if (d[e]) {
+							for (const item of d[e]) {
+								const data: Workshop | null = await workshops.getItem<Workshop>(item);
+								if (data)
+									displayedNames.push(data.name);
+							}
+						}
 					} else if (e === 'room') {
 						const rooms = new Store('rooms');
 						const data: Room | null = await rooms.getItem<Room>(d.id);
