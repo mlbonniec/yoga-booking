@@ -29,8 +29,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 form?.addEventListener('submit', (e) => {
 	e.preventDefault();
-
-	const data = getFormData(form);
+	var data = null;
+	if(form.id === "speakers" || form.id === "participants"){
+		data = getFormData(form, true);
+	}else{
+		data = getFormData(form);
+	}
+	
 	const debug = checkform(data)
 	//fonctionnalités de sauvegarde
 	if(debug.length === 0){

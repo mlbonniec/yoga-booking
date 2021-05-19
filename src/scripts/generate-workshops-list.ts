@@ -1,5 +1,6 @@
 import { Workshop } from "../@types/structures";
 import { workshopConflict } from "../helpers/conflict";
+import { getSelectedWorkshop } from "../helpers/forms";
 import { error, success } from "../helpers/notifications";
 import Store from "../helpers/store";
 import { toHour } from "../helpers/time";
@@ -40,25 +41,11 @@ function generateUI(e:HTMLDivElement){
     
 }
 
-function getSelectedWorkshop(id:number): Array<number>{
-    var array = [] as Array<number>
-    const workshopsDiv = document.getElementById('workshops') as HTMLDivElement;
-    const sub = workshopsDiv.getElementsByTagName("div");
-    for(var i = 0; i<sub.length; i++){
-        const elem = sub[i] as HTMLDivElement;
-        const checkbox = elem.getElementsByTagName("input")[0]
-        if(checkbox.checked) array.push(parseInt(checkbox.id));
 
-    }
-
-    return array;
-}
 
 function conflict(id:number){
     (async () => {
-        const workshops = new Store('workshops');
-        const work = await workshops.getItem(id) as Workshop;
-        var array:Array<number> = getSelectedWorkshop(id);
+        var array:Array<number> = getSelectedWorkshop();
         console.log(array)
         const bo = await workshopConflict(array);
         const checkbox = document.getElementById(""+id) as HTMLInputElement;
