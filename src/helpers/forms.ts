@@ -80,7 +80,10 @@ export function getFormData(form: HTMLFormElement, hasWorkshops:boolean = false 
 export async function addToDB<T extends { id?: number, workshops?:Array<number>, speaker?:number}>(structure: string, data: T): Promise<T> {
 	const id = data.id;
 	const store = new Store(structure);
-
+	if(structure === "workshops") if(!data.speaker){
+		const workS = await store.getItem<Workshop>(""+id)
+		data.speaker = workS?.speaker
+	}
 	if(id) {
 		delete(data.id);
 
@@ -101,7 +104,6 @@ export async function addToDB<T extends { id?: number, workshops?:Array<number>,
 
 		return await store.updateItem<T>(id, data);
 	} else {
-		if(structure === "workshops") if(!data.speaker) data.speaker = -1
 		return await store.setItem<T>(data);
 	}
 }
