@@ -95,14 +95,14 @@ export async function addToDB<T extends { id?: number }>(structure: string, data
 //   });
 
 
-export function getSelectedWorkshop(): Array<number>{
+export function getSelectedWorkshop(id:number = -1): Array<number>{
     var array = [] as Array<number>
     const workshopsDiv = document.getElementById('workshops') as HTMLDivElement;
     const sub = workshopsDiv.getElementsByTagName("div");
     for(var i = 0; i<sub.length; i++){
         const elem = sub[i] as HTMLDivElement;
         const checkbox = elem.getElementsByTagName("input")[0]
-        if(checkbox.checked) array.push(parseInt(checkbox.id));
+        if(checkbox.checked &&  checkbox.id !== id+"") array.push(parseInt(checkbox.id));
 
     }
 
