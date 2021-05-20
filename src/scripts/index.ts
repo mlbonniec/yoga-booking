@@ -58,8 +58,7 @@ const data3: Workshop[] = [
 
 	const speakers = new Store('speakers');
 	const workshops = new Store('workshops');
-
-	if(await rooms.length() === 0){
+	if(await rooms.length() <= 0){
 		for await (const d of data) {
 			await rooms.setItem<Room>(d);
 		}

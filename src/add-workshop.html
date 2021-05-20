@@ -37,7 +37,9 @@
                     </div>
                     <div class="input-container">
                         <span>Salle réservée pour l'atelier</span>
-                        <input type="text" name="room" placeholder="Zénith" />
+                        <select name="room" id="room">
+                            <option value="0">Pas de salle attribuée</option>
+                          </select>
                     </div>
                 </div>
                 <input type="submit" class="add-btn" value="Ajouter cet atelier">
@@ -45,5 +47,6 @@
         </div>
     </div>
     <script src="./scripts/add.ts"></script>
+    <script src="./scripts/generateRoomSelect.ts"></script>
 </body>
 </html>

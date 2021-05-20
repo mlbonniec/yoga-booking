@@ -5,9 +5,8 @@ import { getQueryStringValue } from "../helpers/get-query-string-value";
 import { error, success } from "../helpers/notifications";
 import Store from "../helpers/store";
 import { toHour } from "../helpers/time";
-import { silentRedirection } from "./add";
 
-function generateUI(e:HTMLDivElement, araara:Array<number> = [], speaker:number = -1){
+function generateUI(e:HTMLDivElement, araara:Array<number> = [], speaker:number = -2){
     e.innerHTML = "";
     var h4 = document.createElement("h4") as HTMLElement;
     var textnde = document.createTextNode("Ateliers");
@@ -49,7 +48,6 @@ function generateUI(e:HTMLDivElement, araara:Array<number> = [], speaker:number 
 function conflict(id:number){
     (async () => {
         var array:Array<number> = getSelectedWorkshop(id);
-        console.log(array)
         const bo = await workshopConflict(id,array);
         const checkbox = document.getElementById(""+id) as HTMLInputElement;
         if(bo) {

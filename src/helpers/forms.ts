@@ -1,5 +1,6 @@
 import { toHour, toSeconds } from './time';
 import Store from '../helpers/store';
+import { Participant, Speaker, Workshop } from '../@types/structures';
 
 /**
  * @description Fill a given form with given data.
@@ -13,7 +14,6 @@ export function fillForm<T extends { [key: string]: any }>(el: HTMLFormElement, 
 		throw new Error('You have to pass a form element in the fillForm function.');
 
 	const inputs = Array.from(el.getElementsByTagName('input'));
-
 	inputs.forEach(e => {
 		const name = e.getAttribute('name');
 		if (!name || !(name in data))
@@ -43,6 +43,7 @@ export function fillForm<T extends { [key: string]: any }>(el: HTMLFormElement, 
  */
 export function getFormData(form: HTMLFormElement, hasWorkshops:boolean = false ): object {
 	const inputs = Array.from(form.getElementsByTagName('input'));
+	const select = form.getElementsByTagName("select")[0] as HTMLSelectElement;
 	const data: { [key: string]: any } = {};
 
 	inputs.forEach(e => {
@@ -66,6 +67,7 @@ export function getFormData(form: HTMLFormElement, hasWorkshops:boolean = false 
 	if(hasWorkshops){
 		data["workshops"] = getSelectedWorkshop()
 	}
+	if(select) data["room"] = select.value
 	return data;
 }
 
@@ -75,14 +77,31 @@ export function getFormData(form: HTMLFormElement, hasWorkshops:boolean = false 
  * const data = { name: 'DOE', surname: 'John', email: 'john.doe@domain.com', phone: '+33636291634' };
  * addToDB('speakers', data); // { name: 'DOE', surname: 'John', email: 'john.doe@domain.com', phone: '+33636291634' }
  */
-export async function addToDB<T extends { id?: number }>(structure: string, data: T): Promise<T> {
+export async function addToDB<T extends { id?: number, workshops?:Array<number>, speaker?:number}>(structure: string, data: T): Promise<T> {
 	const id = data.id;
 	const store = new Store(structure);
 
 	if(id) {
 		delete(data.id);
+
+
+		if(structure === "speakers"){
+			const workshops = data.workshops;
+			const store2 = new Store("workshops");
+			if(workshops)
+			for(const work of workshops){
+				var workshop = await store2.getItem<Workshop>(work);
+				if(workshop){
+					workshop.speaker = id;
+					addToDB("workshops", workshop);
+				} 
+			}
+			delete(data.workshops)
+		}
+
 		return await store.updateItem<T>(id, data);
 	} else {
+		if(structure === "workshops") if(!data.speaker) data.speaker = -1
 		return await store.setItem<T>(data);
 	}
 }
