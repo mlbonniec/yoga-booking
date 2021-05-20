@@ -6,7 +6,7 @@ import { checkform, checkstring } from '../helpers/verifications';
 
 const form = document.querySelector('form') as HTMLFormElement | null;
 
-function silentRedirection(url = window.location.pathname): void {
+export function silentRedirection(url = window.location.pathname): void {
 	return window.history.replaceState('', '', url);
 }
 
