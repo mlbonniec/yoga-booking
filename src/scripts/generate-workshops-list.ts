@@ -70,7 +70,6 @@ async function ui(){
     // Rewrite URL by removing parameters
     if (typeof id !== 'number' || !storeName){
         generateUI(workshopsDiv);
-        console.log("test")
     }else{
         if(storeName === "participants"){
             const store = new Store(storeName);
