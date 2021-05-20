@@ -41,7 +41,7 @@ export function fillForm<T extends { [key: string]: any }>(el: HTMLFormElement, 
  * const form = document.getElementById('myform');
  * getFormData(form); // { name: 'DOE', email: 'john.doe@domain.com', payed: true };
  */
-export function getFormData(form: HTMLFormElement): object {
+export function getFormData(form: HTMLFormElement, hasWorkshops:boolean = false ): object {
 	const inputs = Array.from(form.getElementsByTagName('input'));
 	const data: { [key: string]: any } = {};
 
@@ -63,7 +63,9 @@ export function getFormData(form: HTMLFormElement): object {
 				break;
 		}
 	});
-
+	if(hasWorkshops){
+		data["workshops"] = getSelectedWorkshop()
+	}
 	return data;
 }
 
@@ -91,3 +93,18 @@ export async function addToDB<T extends { id?: number }>(structure: string, data
 // 	addToDb("participants", getFormData(form))
 // 	document.location.reload()
 //   });
+
+
+export function getSelectedWorkshop(): Array<number>{
+    var array = [] as Array<number>
+    const workshopsDiv = document.getElementById('workshops') as HTMLDivElement;
+    const sub = workshopsDiv.getElementsByTagName("div");
+    for(var i = 0; i<sub.length; i++){
+        const elem = sub[i] as HTMLDivElement;
+        const checkbox = elem.getElementsByTagName("input")[0]
+        if(checkbox.checked) array.push(parseInt(checkbox.id));
+
+    }
+
+    return array;
+}

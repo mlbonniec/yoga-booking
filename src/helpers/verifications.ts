@@ -12,7 +12,7 @@ export function checkstring(type: string, value:string) : boolean{
             decision = /^[^@\t\r\n\s]+@[^@\t\r\n\s]+\.[^@\t\r\n\s]+$/g.test(value);
             break
         case "time":
-            decision = /^[0-2][0-9]h[0-5][0-9]$/g.test(value);
+            decision = /^[0-2][0-9]\:[0-5][0-9]$/g.test(value);
             break
         case "name":
             decision = /^[A-zÀ-ú,.'-]{1,}$/i.test(value)
@@ -32,12 +32,12 @@ export function checkform(data: object): Array<String>{
     var debug = [];
 	for(const [key, value] of Object.entries(data)){
 		
-		if( key === "start" || key === "end"){
+		/*if( key === "start" || key === "end"){
 			if(!checkstring("time",value)){
 				debug.push(key)
 			}
-		}
-		else if( key === "name" || key === "room" || key === "surname"){
+		}*/
+		if( key === "name" || key === "room" || key === "surname"){
 			if(!checkstring("name",value)){
 				debug.push(key)
 			}

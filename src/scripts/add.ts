@@ -1,9 +1,8 @@
-import { Participant, Room, Speaker, Workshop } from '../@types/structures';
 import { addToDB, fillForm, getFormData } from '../helpers/forms';
 import { getQueryStringValue } from '../helpers/get-query-string-value';
 import { error, success } from '../helpers/notifications';
 import Store from '../helpers/store';
-import { checkform, checkstring } from '../helpers/verifications';
+import { checkform } from '../helpers/verifications';
 
 const form = document.querySelector('form') as HTMLFormElement | null;
 
@@ -31,7 +30,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 form?.addEventListener('submit', (e) => {
 	e.preventDefault();
 
-	const data: object & { id?: number } = getFormData(form);
+	var data: object & { id?: number } | null = null;
+	if(form.id === "speakers" || form.id === "participants"){
+		data = getFormData(form, true);
+	}else{
+		data = getFormData(form);
+	}
+
 	const debug = checkform(data)
 	//fonctionnalités de sauvegarde
 	if(debug.length === 0) {

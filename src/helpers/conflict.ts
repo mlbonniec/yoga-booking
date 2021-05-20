@@ -26,3 +26,24 @@ export default async function participantConflict(participant: Participant, work
   
   return false;
 }
+
+export async function workshopConflict(array:Array<number>): Promise<boolean> {
+  const workshops = new Store('workshops');
+  
+  for(const work of array){
+    const {start, end} = await workshops.getItem<Workshop>(work) as Workshop;
+    for (const element of array) {
+      const participantWorkshop = await workshops.getItem<Workshop>(element);
+  
+      if (participantWorkshop) {
+        const startW = participantWorkshop.start;
+        const endW = participantWorkshop.end;
+        if ((start > startW && start < endW) || (end > startW && end < endW))
+          return true;
+      }
+    }
+  }
+  
+  
+  return false;
+}
