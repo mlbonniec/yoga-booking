@@ -1,4 +1,4 @@
-import { Participant, Workshop } from "../@types/structures";
+import { Participant, Room, Workshop } from "../@types/structures";
 import { workshopConflict } from "../helpers/conflict";
 import { getSelectedWorkshop } from "../helpers/forms";
 import { getQueryStringValue } from "../helpers/get-query-string-value";
@@ -14,6 +14,7 @@ function generateUI(e:HTMLDivElement, araara:Array<number> = [], speaker:number 
     e.appendChild(h4);
     (async () => {
         const workshops = new Store('workshops');
+        const rooms = new Store('rooms');
         const workshopsData = await workshops.getItems<Workshop>();
         for(const workshopData of workshopsData){
             var div = document.createElement("DIV") as HTMLDivElement;
@@ -28,9 +29,11 @@ function generateUI(e:HTMLDivElement, araara:Array<number> = [], speaker:number 
             if(speaker === workshopData.speaker) checkbox.checked = true;
             var label = document.createElement("LABEL") as HTMLLabelElement;
             label.htmlFor = "scales";
-
-            var textnode = document.createTextNode(workshopData?.name+" • "+toHour(workshopData?.start as number)+" • "+toHour(workshopData?.end as number)+" • "+workshopData?.room);
-            
+            const room = await rooms.getItem<Room>(workshopData?.room);
+            if(room)
+            var textnode = document.createTextNode(workshopData?.name+" • "+toHour(workshopData?.start as number)+" • "+toHour(workshopData?.end as number)+" • "+room.name);
+            else 
+            var textnode = document.createTextNode(workshopData?.name+" • "+toHour(workshopData?.start as number)+" • "+toHour(workshopData?.end as number)+" • "+"Pas de salle");
             label.appendChild(textnode);
             div.appendChild(checkbox);
             div.appendChild(label);
