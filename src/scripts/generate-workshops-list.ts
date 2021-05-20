@@ -45,9 +45,9 @@ function generateUI(e:HTMLDivElement){
 
 function conflict(id:number){
     (async () => {
-        var array:Array<number> = getSelectedWorkshop();
+        var array:Array<number> = getSelectedWorkshop(id);
         console.log(array)
-        const bo = await workshopConflict(array);
+        const bo = await workshopConflict(id,array);
         const checkbox = document.getElementById(""+id) as HTMLInputElement;
         if(bo) {
             checkbox.checked = false;
