@@ -37,7 +37,7 @@ export function checkform(data: object): Array<String>{
 				debug.push(key)
 			}
 		}*/
-		if( key === "name" || key === "room" || key === "surname"){
+		if( key === "name" || key === "surname"){
 			if(!checkstring("name",value)){
 				debug.push(key)
 			}

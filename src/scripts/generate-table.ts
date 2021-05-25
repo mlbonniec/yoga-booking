@@ -38,7 +38,7 @@ async function generateTable<T extends { [key: string]: any }>(table: HTMLTableE
 						}
 					} else if (e === 'room') {
 						const rooms = new Store('rooms');
-						const data: Room | null = await rooms.getItem<Room>(d.id);
+						const data: Room | null = await rooms.getItem<Room>(parseInt(d.room));
 						if (data)
 							displayedNames.push(data.name);
 					}
@@ -63,7 +63,7 @@ async function generateTable<T extends { [key: string]: any }>(table: HTMLTableE
 				cell.appendChild(div);
 			} else if (e === 'speaker') {
 				const speakers = new Store('speakers');
-				const data: Speaker | null = await speakers.getItem<Speaker>(d.id);
+				const data: Speaker | null = await speakers.getItem<Speaker>(d.speaker);
 				if (data)
 					cell.innerText = data.name;
 			} else {
