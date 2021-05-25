@@ -35,7 +35,6 @@ export async function workshopConflict(clickedW:number,array:Array<number>): Pro
   const startW = participantWorkshop.start;
   const endW = participantWorkshop.end;
   for(const work of array){
-    console.log(work)
     const {start, end} = await workshops.getItem<Workshop>(work) as Workshop;
     if ((start >= startW && start < endW) || (end > startW && end <= endW))
       return true;
