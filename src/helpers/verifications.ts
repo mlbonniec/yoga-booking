@@ -1,3 +1,5 @@
+import { roomConflict } from "./conflict";
+
 /**
  * @description Check if a string correspond to the correct syntax depending of a provided type.
  * @example
@@ -31,6 +33,7 @@ export function checkstring(type: string, value:string) : boolean{
 
 export function checkform(data: object): Array<String>{
     var debug = [];
+    console.log(data)
 	for(const [key, value] of Object.entries(data)){
 		
 		/*if( key === "start" || key === "end"){
@@ -51,7 +54,12 @@ export function checkform(data: object): Array<String>{
 			if(!checkstring("phone",value)){
 				debug.push(key)
 			}
-		}
+		}else if( key === "room"){
+            const boo = roomConflict(parseInt(value), data.start, data.end);
+            if(boo){
+                debug.push(key);
+            }
+        }
 		
 	}
     return debug;

@@ -43,3 +43,22 @@ export async function workshopConflict(clickedW:number,array:Array<number>): Pro
   }
   return false;
 }
+
+export async function roomConflict(clickedR:number,startW:number, endW:number): Promise<boolean> {
+  const workshops = new Store('workshops');
+  const roomWorkshops = await workshops.getItems<Workshop>({room : clickedR});
+  console.log(startW, endW, roomWorkshops)
+  console.log(clickedR === -1)
+  if(clickedR === -1) return false;
+  console.log("debug")
+  if (roomWorkshops) {
+
+  for(const work of roomWorkshops){
+    const {start, end} = work;
+    if ((start >= startW && start < endW) || (end > startW && end <= endW))
+      return true;
+  }
+  
+  }
+  return false;
+}
