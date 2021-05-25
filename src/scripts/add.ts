@@ -29,9 +29,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 form?.addEventListener('submit', (e) => {
 	e.preventDefault();
 	var data: object & { id?: number };
+	const id = getQueryStringValue('id');
+	var b = false;
+	if (!id || typeof id !== 'number') b = false
+	else b = true;
+	
 
 	if(form.id === "speakers" || form.id === "participants"){
-		data = getFormData(form, true) ;
+		data = getFormData(form, true, b) ;
 	}else{
 		data = getFormData(form);
 	}
