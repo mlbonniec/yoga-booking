@@ -1,3 +1,5 @@
+import { Workshop } from '../@types/structures';
+import { roomConflict } from '../helpers/conflict';
 import { addToDB, fillForm, getFormData } from '../helpers/forms';
 import { getQueryStringValue } from '../helpers/get-query-string-value';
 import { error, success } from '../helpers/notifications';
@@ -28,7 +30,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 form?.addEventListener('submit', (e) => {
 	e.preventDefault();
-	var data: object & { id?: number };
+	var data: object & { id?: number , start?:number, end?:number, room?:string};
 	const id = getQueryStringValue('id');
 	var b = false;
 	if (!id || typeof id !== 'number') b = false
@@ -41,6 +43,34 @@ form?.addEventListener('submit', (e) => {
 		data = getFormData(form);
 	}
 	const debug = checkform(data)
+	if(form.id === "workshops"){
+		const {start, end, room} = data;
+		if(typeof(room) === "string" && typeof(start) === "number" && typeof(end) === "number" && room !== "-1"){
+			const boo = (async () => {
+				const workshops = new Store('workshops');
+				const roomWorkshops = await workshops.getItems<Workshop>();
+				if(parseInt(room) === -1) return false;
+				if (roomWorkshops) {
+				for(const work of roomWorkshops){
+					const startW = work.start
+					const endW = work.end
+					if ((startW >= start && startW < end) || (endW > start && endW <= end)){
+						return true;
+					}
+					
+					
+				}
+				
+				}
+				return false;
+				
+			})();
+			if(boo) debug.push("room conflict")
+		}
+		
+		
+		
+	}
 	//fonctionnalités de sauvegarde
 	if(debug.length === 0) {
 		const id = getQueryStringValue('id');

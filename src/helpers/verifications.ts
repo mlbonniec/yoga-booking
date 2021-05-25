@@ -1,3 +1,6 @@
+import { Workshop } from "../@types/structures";
+import { roomConflict } from "./conflict";
+
 /**
  * @description Check if a string correspond to the correct syntax depending of a provided type.
  * @example
@@ -15,12 +18,13 @@ export function checkstring(type: string, value:string) : boolean{
             decision = /^[0-2][0-9]\:[0-5][0-9]$/g.test(value);
             break
         case "name":
-            decision = /^[A-zÀ-ú,.'-]{1,}$/i.test(value)
+            decision = /^[A-zÀ-ú,.'-]{1,255}$/i.test(value)
             break
         case "phone":
             decision = /^([0-9]{2}\s){4}[0-9]{2}$/g.test(value)
             if(!decision) decision = /^([0-9]{2}){5}$/g.test(value)
             if(!decision) decision = /^\+([0-9]{2,3})+([0-9]{9})$/g.test(value)
+            if(!decision) decision = /^\+([0-9]{2,3})\s([0-9]\s)([0-9]{2}\s){3}([0-9]{2})$/g.test(value)
             break
         default:
             decision = false;
@@ -28,8 +32,9 @@ export function checkstring(type: string, value:string) : boolean{
     return decision;
 }
 
-export function checkform(data: object): Array<String>{
+export function checkform(data: object ): Array<String>{
     var debug = [];
+    console.log(data)
 	for(const [key, value] of Object.entries(data)){
 		
 		/*if( key === "start" || key === "end"){
@@ -53,5 +58,10 @@ export function checkform(data: object): Array<String>{
 		}
 		
 	}
+    if("start" === Object.keys(data)[0] && "end" === Object.keys(data)[1]){
+        const data2 = data as Workshop
+        if(data2.start > data2.end) debug.push("time conflict")
+    }
+    
     return debug;
 }
