@@ -54,12 +54,7 @@ export function checkform(data: object): Array<String>{
 			if(!checkstring("phone",value)){
 				debug.push(key)
 			}
-		}else if( key === "room"){
-            const boo = roomConflict(parseInt(value), data.start, data.end);
-            if(boo){
-                debug.push(key);
-            }
-        }
+		}
 		
 	}
     return debug;
