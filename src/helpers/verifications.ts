@@ -1,3 +1,4 @@
+import { Workshop } from "../@types/structures";
 import { roomConflict } from "./conflict";
 
 /**
@@ -31,7 +32,7 @@ export function checkstring(type: string, value:string) : boolean{
     return decision;
 }
 
-export function checkform(data: object): Array<String>{
+export function checkform(data: object ): Array<String>{
     var debug = [];
     console.log(data)
 	for(const [key, value] of Object.entries(data)){
@@ -57,5 +58,10 @@ export function checkform(data: object): Array<String>{
 		}
 		
 	}
+    if("start" === Object.keys(data)[0] && "end" === Object.keys(data)[1]){
+        const data2 = data as Workshop
+        if(data2.start > data2.end) debug.push("time conflict")
+    }
+    
     return debug;
 }
