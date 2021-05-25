@@ -38,39 +38,12 @@ form?.addEventListener('submit', (e) => {
 	
 
 	if(form.id === "speakers" || form.id === "participants"){
-		data = getFormData(form, true, b) ;
+		if(form.id === "speakers") data = getFormData(form, true, b) ;
+		else data = getFormData(form, true) ;
 	}else{
 		data = getFormData(form);
 	}
 	const debug = checkform(data)
-	if(form.id === "workshops"){
-		const {start, end, room} = data;
-		if(typeof(room) === "string" && typeof(start) === "number" && typeof(end) === "number" && room !== "-1"){
-			const boo = (async () => {
-				const workshops = new Store('workshops');
-				const roomWorkshops = await workshops.getItems<Workshop>();
-				if(parseInt(room) === -1) return false;
-				if (roomWorkshops) {
-				for(const work of roomWorkshops){
-					const startW = work.start
-					const endW = work.end
-					if ((startW >= start && startW < end) || (endW > start && endW <= end)){
-						return true;
-					}
-					
-					
-				}
-				
-				}
-				return false;
-				
-			})();
-			if(boo) debug.push("room conflict")
-		}
-		
-		
-		
-	}
 	//fonctionnalités de sauvegarde
 	if(debug.length === 0) {
 		const id = getQueryStringValue('id');
