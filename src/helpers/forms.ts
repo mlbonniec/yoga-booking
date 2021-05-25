@@ -41,7 +41,7 @@ export function fillForm<T extends { [key: string]: any }>(el: HTMLFormElement, 
  * const form = document.getElementById('myform');
  * getFormData(form); // { name: 'DOE', email: 'john.doe@domain.com', payed: true };
  */
-export function getFormData(form: HTMLFormElement, hasWorkshops:boolean = false ): object {
+export function getFormData(form: HTMLFormElement, hasWorkshops:boolean = false, isModif:boolean = false ): object {
 	const inputs = Array.from(form.getElementsByTagName('input'));
 	const select = form.getElementsByTagName("select")[0] as HTMLSelectElement;
 	const data: { [key: string]: any } = {};
@@ -65,7 +65,7 @@ export function getFormData(form: HTMLFormElement, hasWorkshops:boolean = false 
 		}
 	});
 	if(hasWorkshops){
-		data["workshops"] = getSelectedWorkshop()
+		data["workshops"] = getSelectedWorkshop(undefined, isModif)
 	}
 	if(select) data["room"] = select.value
 	return data;
@@ -87,15 +87,16 @@ export async function addToDB<T extends { id?: number, workshops?:Array<number>,
 	if(id) {
 		delete(data.id);
 
-
 		if(structure === "speakers"){
 			const workshops = data.workshops;
 			const store2 = new Store("workshops");
 			if(workshops)
 			for(const work of workshops){
 				var workshop = await store2.getItem<Workshop>(work);
+				const checkbox = document.getElementById(""+work) as HTMLInputElement;
 				if(workshop){
-					workshop.speaker = id;
+					if(checkbox.checked) workshop.speaker = id
+					else workshop.speaker = -1
 					addToDB("workshops", workshop);
 				} 
 			}
@@ -116,14 +117,14 @@ export async function addToDB<T extends { id?: number, workshops?:Array<number>,
 //   });
 
 
-export function getSelectedWorkshop(id:number = -1): Array<number>{
+export function getSelectedWorkshop(id:number = -1, isModif:boolean = false): Array<number>{
     var array = [] as Array<number>
     const workshopsDiv = document.getElementById('workshops') as HTMLDivElement;
     const sub = workshopsDiv.getElementsByTagName("div");
     for(var i = 0; i<sub.length; i++){
         const elem = sub[i] as HTMLDivElement;
         const checkbox = elem.getElementsByTagName("input")[0]
-        if(checkbox.checked &&  checkbox.id !== id+"") array.push(parseInt(checkbox.id));
+        if(isModif || (checkbox.checked &&  checkbox.id !== id+"")) array.push(parseInt(checkbox.id));
 
     }
 
